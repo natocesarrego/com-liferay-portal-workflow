@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -59,25 +60,6 @@ public interface KaleoDefinitionVersionLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link KaleoDefinitionVersionLocalServiceUtil} to access the kaleo definition version local service. Add custom service methods to {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoDefinitionVersionLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ActionableDynamicQuery getActionableDynamicQuery();
-
-	public DynamicQuery dynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
-		throws PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException;
 
 	/**
 	* Adds the kaleo definition version to the database. Also notifies the appropriate model listeners.
@@ -88,6 +70,12 @@ public interface KaleoDefinitionVersionLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.REINDEX)
 	public KaleoDefinitionVersion addKaleoDefinitionVersion(
 		KaleoDefinitionVersion kaleoDefinitionVersion);
+
+	public KaleoDefinitionVersion addKaleoDefinitionVersion(
+		java.lang.String name, java.lang.String title,
+		java.lang.String description, java.lang.String content,
+		java.lang.String version, ServiceContext serviceContext)
+		throws PortalException;
 
 	/**
 	* Creates a new kaleo definition version with the primary key. Does not add the kaleo definition version to the database.
@@ -119,73 +107,18 @@ public interface KaleoDefinitionVersionLocalService extends BaseLocalService,
 	public KaleoDefinitionVersion deleteKaleoDefinitionVersion(
 		long kaleoDefinitionVersionId) throws PortalException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KaleoDefinitionVersion fetchKaleoDefinitionVersion(
-		long kaleoDefinitionVersionId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KaleoDefinitionVersion getKaleoDefinitionVersion(long companyId,
+	public KaleoDefinitionVersion deleteKaleoDefinitionVersion(long companyId,
 		java.lang.String name, java.lang.String version)
 		throws PortalException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KaleoDefinitionVersion getKaleoDefinitionVersion(
-		long kaleoDefinitionId, java.lang.String version)
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
-	/**
-	* Returns the kaleo definition version with the primary key.
-	*
-	* @param kaleoDefinitionVersionId the primary key of the kaleo definition version
-	* @return the kaleo definition version
-	* @throws PortalException if a kaleo definition version with the primary key could not be found
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KaleoDefinitionVersion getKaleoDefinitionVersion(
-		long kaleoDefinitionVersionId) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KaleoDefinitionVersion getLatestKaleoDefinitionVersion(
-		long kaleoDefinitionId) throws PortalException;
-
-	/**
-	* Updates the kaleo definition version in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoDefinitionVersion the kaleo definition version
-	* @return the kaleo definition version that was updated
-	*/
-	@Indexable(type = IndexableType.REINDEX)
-	public KaleoDefinitionVersion updateKaleoDefinitionVersion(
-		KaleoDefinitionVersion kaleoDefinitionVersion);
-
-	/**
-	* Returns the number of kaleo definition versions.
-	*
-	* @return the number of kaleo definition versions
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKaleoDefinitionVersionsCount();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKaleoDefinitionVersionsCount(long companyId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKaleoDefinitionVersionsCount(long companyId, boolean active);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKaleoDefinitionVersionsCount(long companyId,
-		java.lang.String name);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKaleoDefinitionVersionsCount(long companyId,
-		java.lang.String name, boolean active);
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public java.lang.String getOSGiServiceIdentifier();
+	public DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -227,45 +160,6 @@ public interface KaleoDefinitionVersionLocalService extends BaseLocalService,
 		int end, OrderByComparator<T> orderByComparator);
 
 	/**
-	* Returns a range of all the kaleo definition versions.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoDefinitionVersionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of kaleo definition versions
-	* @param end the upper bound of the range of kaleo definition versions (not inclusive)
-	* @return the range of kaleo definition versions
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<KaleoDefinitionVersion> getKaleoDefinitionVersions(int start,
-		int end);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<KaleoDefinitionVersion> getKaleoDefinitionVersions(
-		long companyId, boolean active, int start, int end,
-		OrderByComparator<KaleoDefinitionVersion> orderByComparator);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<KaleoDefinitionVersion> getKaleoDefinitionVersions(
-		long companyId, int start, int end,
-		OrderByComparator<KaleoDefinitionVersion> orderByComparator);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<KaleoDefinitionVersion> getKaleoDefinitionVersions(
-		long companyId, java.lang.String name) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<KaleoDefinitionVersion> getKaleoDefinitionVersions(
-		long companyId, java.lang.String name, boolean active, int start,
-		int end, OrderByComparator<KaleoDefinitionVersion> orderByComparator);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<KaleoDefinitionVersion> getKaleoDefinitionVersions(
-		long companyId, java.lang.String name, int start, int end,
-		OrderByComparator<KaleoDefinitionVersion> orderByComparator);
-
-	/**
 	* Returns the number of rows matching the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
@@ -282,4 +176,124 @@ public interface KaleoDefinitionVersionLocalService extends BaseLocalService,
 	*/
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
 		Projection projection);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KaleoDefinitionVersion fetchKaleoDefinitionVersion(
+		long kaleoDefinitionVersionId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KaleoDefinitionVersion fetchLatestKaleoDefinitionVersion(
+		long companyId, java.lang.String name,
+		OrderByComparator<KaleoDefinitionVersion> orderByComparator)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public ActionableDynamicQuery getActionableDynamicQuery();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+
+	/**
+	* Returns the kaleo definition version with the primary key.
+	*
+	* @param kaleoDefinitionVersionId the primary key of the kaleo definition version
+	* @return the kaleo definition version
+	* @throws PortalException if a kaleo definition version with the primary key could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KaleoDefinitionVersion getKaleoDefinitionVersion(
+		long kaleoDefinitionVersionId) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KaleoDefinitionVersion getKaleoDefinitionVersion(long companyId,
+		java.lang.String name, java.lang.String version)
+		throws PortalException;
+
+	/**
+	* Returns a range of all the kaleo definition versions.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoDefinitionVersionModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param start the lower bound of the range of kaleo definition versions
+	* @param end the upper bound of the range of kaleo definition versions (not inclusive)
+	* @return the range of kaleo definition versions
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<KaleoDefinitionVersion> getKaleoDefinitionVersions(int start,
+		int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<KaleoDefinitionVersion> getKaleoDefinitionVersions(
+		long companyId, int start, int end,
+		OrderByComparator<KaleoDefinitionVersion> orderByComparator);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<KaleoDefinitionVersion> getKaleoDefinitionVersions(
+		long companyId, java.lang.String name) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<KaleoDefinitionVersion> getKaleoDefinitionVersions(
+		long companyId, java.lang.String name, int start, int end,
+		OrderByComparator<KaleoDefinitionVersion> orderByComparator);
+
+	/**
+	* Returns the number of kaleo definition versions.
+	*
+	* @return the number of kaleo definition versions
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKaleoDefinitionVersionsCount();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKaleoDefinitionVersionsCount(long companyId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKaleoDefinitionVersionsCount(long companyId,
+		java.lang.String name);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KaleoDefinitionVersion[] getKaleoDefinitionVersionsPrevAndNext(
+		long companyId, java.lang.String name, java.lang.String version)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KaleoDefinitionVersion getLatestKaleoDefinitionVersion(
+		long companyId, java.lang.String name) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<KaleoDefinitionVersion> getLatestKaleoDefinitionVersions(
+		long companyId, java.lang.String keywords, int status, int start,
+		int end, OrderByComparator<KaleoDefinitionVersion> orderByComparator);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getLatestKaleoDefinitionVersionsCount(long companyId,
+		java.lang.String keywords, int status);
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public java.lang.String getOSGiServiceIdentifier();
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
+
+	/**
+	* Updates the kaleo definition version in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoDefinitionVersion the kaleo definition version
+	* @return the kaleo definition version that was updated
+	*/
+	@Indexable(type = IndexableType.REINDEX)
+	public KaleoDefinitionVersion updateKaleoDefinitionVersion(
+		KaleoDefinitionVersion kaleoDefinitionVersion);
+
+	public void updateKaleoDefinitionVersionTitle(long companyId,
+		java.lang.String name, java.lang.String version, java.lang.String title)
+		throws PortalException;
 }

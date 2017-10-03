@@ -23,6 +23,10 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 String backURL = ParamUtil.getString(request, "backURL", redirect);
 
+if (Validator.isNull(backURL)) {
+	backURL = renderResponse.createRenderURL().toString();
+}
+
 WorkflowTask workflowTask = workflowTaskDisplayContext.getWorkflowTask();
 
 long classPK = workflowTaskDisplayContext.getWorkflowContextEntryClassPK(workflowTask);
@@ -179,14 +183,14 @@ renderResponse.setTitle(headerTitle);
 							/>
 						</h3>
 
-						<liferay-ui:asset-display
+						<liferay-asset:asset-display
 							assetRenderer="<%= assetRenderer %>"
 							template="<%= AssetRenderer.TEMPLATE_ABSTRACT %>"
 						/>
 					</liferay-ui:panel>
 
 					<liferay-ui:panel extended="<%= true %>" markupView="lexicon" title="comments">
-						<liferay-ui:discussion
+						<liferay-comment:discussion
 							assetEntryVisible="<%= false %>"
 							className="<%= assetRenderer.getClassName() %>"
 							classPK="<%= assetRenderer.getClassPK() %>"
