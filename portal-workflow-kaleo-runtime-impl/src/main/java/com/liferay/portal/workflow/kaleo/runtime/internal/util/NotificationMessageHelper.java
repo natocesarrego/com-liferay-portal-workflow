@@ -14,8 +14,12 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.internal.util;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
@@ -71,7 +75,20 @@ public class NotificationMessageHelper {
 			executionContext.getKaleoTaskInstanceToken();
 
 		if (kaleoTaskInstanceToken != null) {
-			userId = kaleoTaskInstanceToken.getUserId();
+			ServiceContext serviceContext =
+				executionContext.getServiceContext();
+
+			try {
+				userId = serviceContext.getGuestOrUserId();
+			}
+			catch (PortalException pe) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(
+						"Unable to get user from context, using userId from " +
+							"kaleoInstanceToken instead",
+						pe);
+				}
+			}
 		}
 
 		jsonObject.put(
@@ -93,5 +110,8 @@ public class NotificationMessageHelper {
 
 	@Reference
 	protected JSONFactory jsonFactory;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		NotificationMessageHelper.class);
 
 }
