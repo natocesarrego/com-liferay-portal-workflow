@@ -65,11 +65,7 @@ WorkflowDefinitionSearch workflowDefinitionSearch = new WorkflowDefinitionSearch
 
 <aui:nav-bar cssClass="collapse-basic-search" markupView="lexicon">
 	<aui:nav cssClass="navbar-nav">
-		<aui:nav-item
-			href="<%= viewDefinitionsURL %>"
-			label="definitions"
-			selected='<%= navigation.equals("definitions") %>'
-		/>
+		<aui:nav-item href="<%= viewDefinitionsURL %>" label="definitions" selected='<%= navigation.equals("definitions") %>' />
 	</aui:nav>
 
 	<aui:nav-bar-search>
