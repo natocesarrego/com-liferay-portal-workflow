@@ -32,7 +32,9 @@ PortletURL portletURL = workflowInstanceViewDisplayContext.getViewPortletURL();
 
 		<aui:nav-bar-search>
 			<aui:form action="<%= portletURL.toString() %>" method="post" name="fm1">
-				<liferay-ui:input-search markupView="lexicon" />
+				<liferay-ui:input-search
+					markupView="lexicon"
+				/>
 			</aui:form>
 		</aui:nav-bar-search>
 	</aui:nav-bar>
