@@ -208,7 +208,7 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 		attributes.put("kaleoInstanceTokenId", getKaleoInstanceTokenId());
 		attributes.put("kaleoTaskInstanceTokenId", getKaleoTaskInstanceTokenId());
 		attributes.put("kaleoNodeName", getKaleoNodeName());
-		attributes.put("terminalKaleoNode", getTerminalKaleoNode());
+		attributes.put("terminalKaleoNode", isTerminalKaleoNode());
 		attributes.put("kaleoActionId", getKaleoActionId());
 		attributes.put("kaleoActionName", getKaleoActionName());
 		attributes.put("kaleoActionDescription", getKaleoActionDescription());
@@ -943,7 +943,7 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 		kaleoLogImpl.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
 		kaleoLogImpl.setKaleoTaskInstanceTokenId(getKaleoTaskInstanceTokenId());
 		kaleoLogImpl.setKaleoNodeName(getKaleoNodeName());
-		kaleoLogImpl.setTerminalKaleoNode(getTerminalKaleoNode());
+		kaleoLogImpl.setTerminalKaleoNode(isTerminalKaleoNode());
 		kaleoLogImpl.setKaleoActionId(getKaleoActionId());
 		kaleoLogImpl.setKaleoActionName(getKaleoActionName());
 		kaleoLogImpl.setKaleoActionDescription(getKaleoActionDescription());
@@ -1124,7 +1124,7 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 			kaleoLogCacheModel.kaleoNodeName = null;
 		}
 
-		kaleoLogCacheModel.terminalKaleoNode = getTerminalKaleoNode();
+		kaleoLogCacheModel.terminalKaleoNode = isTerminalKaleoNode();
 
 		kaleoLogCacheModel.kaleoActionId = getKaleoActionId();
 
@@ -1258,7 +1258,7 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 		sb.append(", kaleoNodeName=");
 		sb.append(getKaleoNodeName());
 		sb.append(", terminalKaleoNode=");
-		sb.append(getTerminalKaleoNode());
+		sb.append(isTerminalKaleoNode());
 		sb.append(", kaleoActionId=");
 		sb.append(getKaleoActionId());
 		sb.append(", kaleoActionName=");
@@ -1360,7 +1360,7 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>terminalKaleoNode</column-name><column-value><![CDATA[");
-		sb.append(getTerminalKaleoNode());
+		sb.append(isTerminalKaleoNode());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>kaleoActionId</column-name><column-value><![CDATA[");

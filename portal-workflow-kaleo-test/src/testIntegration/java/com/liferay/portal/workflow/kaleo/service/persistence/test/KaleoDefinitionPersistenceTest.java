@@ -179,8 +179,8 @@ public class KaleoDefinitionPersistenceTest {
 			newKaleoDefinition.getContent());
 		Assert.assertEquals(existingKaleoDefinition.getVersion(),
 			newKaleoDefinition.getVersion());
-		Assert.assertEquals(existingKaleoDefinition.getActive(),
-			newKaleoDefinition.getActive());
+		Assert.assertEquals(existingKaleoDefinition.isActive(),
+			newKaleoDefinition.isActive());
 		Assert.assertEquals(existingKaleoDefinition.getStartKaleoNodeId(),
 			newKaleoDefinition.getStartKaleoNodeId());
 	}

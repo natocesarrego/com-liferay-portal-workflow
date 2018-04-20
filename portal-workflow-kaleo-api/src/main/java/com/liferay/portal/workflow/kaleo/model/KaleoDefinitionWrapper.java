@@ -70,7 +70,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 		attributes.put("description", getDescription());
 		attributes.put("content", getContent());
 		attributes.put("version", getVersion());
-		attributes.put("active", getActive());
+		attributes.put("active", isActive());
 		attributes.put("startKaleoNodeId", getStartKaleoNodeId());
 
 		return attributes;

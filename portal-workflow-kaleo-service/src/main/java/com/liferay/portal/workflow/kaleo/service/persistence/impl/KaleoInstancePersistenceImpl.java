@@ -1779,7 +1779,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoInstance kaleoInstance : list) {
 					if ((kaleoDefinitionId != kaleoInstance.getKaleoDefinitionId()) ||
-							(completed != kaleoInstance.getCompleted())) {
+							(completed != kaleoInstance.isCompleted())) {
 						list = null;
 
 						break;
@@ -3793,7 +3793,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 
 			args = new Object[] {
 					kaleoInstanceModelImpl.getKaleoDefinitionId(),
-					kaleoInstanceModelImpl.getCompleted()
+					kaleoInstanceModelImpl.isCompleted()
 				};
 
 			finderCache.removeResult(FINDER_PATH_COUNT_BY_KDI_C, args);

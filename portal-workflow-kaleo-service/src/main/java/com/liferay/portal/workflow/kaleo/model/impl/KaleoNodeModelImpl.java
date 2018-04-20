@@ -168,8 +168,8 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		attributes.put("metadata", getMetadata());
 		attributes.put("description", getDescription());
 		attributes.put("type", getType());
-		attributes.put("initial", getInitial());
-		attributes.put("terminal", getTerminal());
+		attributes.put("initial", isInitial());
+		attributes.put("terminal", isTerminal());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -530,8 +530,8 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		kaleoNodeImpl.setMetadata(getMetadata());
 		kaleoNodeImpl.setDescription(getDescription());
 		kaleoNodeImpl.setType(getType());
-		kaleoNodeImpl.setInitial(getInitial());
-		kaleoNodeImpl.setTerminal(getTerminal());
+		kaleoNodeImpl.setInitial(isInitial());
+		kaleoNodeImpl.setTerminal(isTerminal());
 
 		kaleoNodeImpl.resetOriginalValues();
 
@@ -685,9 +685,9 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 			kaleoNodeCacheModel.type = null;
 		}
 
-		kaleoNodeCacheModel.initial = getInitial();
+		kaleoNodeCacheModel.initial = isInitial();
 
-		kaleoNodeCacheModel.terminal = getTerminal();
+		kaleoNodeCacheModel.terminal = isTerminal();
 
 		return kaleoNodeCacheModel;
 	}
@@ -721,9 +721,9 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		sb.append(", type=");
 		sb.append(getType());
 		sb.append(", initial=");
-		sb.append(getInitial());
+		sb.append(isInitial());
 		sb.append(", terminal=");
-		sb.append(getTerminal());
+		sb.append(isTerminal());
 		sb.append("}");
 
 		return sb.toString();
@@ -787,11 +787,11 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>initial</column-name><column-value><![CDATA[");
-		sb.append(getInitial());
+		sb.append(isInitial());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>terminal</column-name><column-value><![CDATA[");
-		sb.append(getTerminal());
+		sb.append(isTerminal());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
