@@ -2570,8 +2570,6 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 	@Override
 	protected KaleoNotification removeImpl(KaleoNotification kaleoNotification) {
-		kaleoNotification = toUnwrappedModel(kaleoNotification);
-
 		Session session = null;
 
 		try {
@@ -2602,8 +2600,6 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 	@Override
 	public KaleoNotification updateImpl(KaleoNotification kaleoNotification) {
-		kaleoNotification = toUnwrappedModel(kaleoNotification);
-
 		boolean isNew = kaleoNotification.isNew();
 
 		KaleoNotificationModelImpl kaleoNotificationModelImpl = (KaleoNotificationModelImpl)kaleoNotification;
@@ -2792,38 +2788,6 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		kaleoNotification.resetOriginalValues();
 
 		return kaleoNotification;
-	}
-
-	protected KaleoNotification toUnwrappedModel(
-		KaleoNotification kaleoNotification) {
-		if (kaleoNotification instanceof KaleoNotificationImpl) {
-			return kaleoNotification;
-		}
-
-		KaleoNotificationImpl kaleoNotificationImpl = new KaleoNotificationImpl();
-
-		kaleoNotificationImpl.setNew(kaleoNotification.isNew());
-		kaleoNotificationImpl.setPrimaryKey(kaleoNotification.getPrimaryKey());
-
-		kaleoNotificationImpl.setKaleoNotificationId(kaleoNotification.getKaleoNotificationId());
-		kaleoNotificationImpl.setGroupId(kaleoNotification.getGroupId());
-		kaleoNotificationImpl.setCompanyId(kaleoNotification.getCompanyId());
-		kaleoNotificationImpl.setUserId(kaleoNotification.getUserId());
-		kaleoNotificationImpl.setUserName(kaleoNotification.getUserName());
-		kaleoNotificationImpl.setCreateDate(kaleoNotification.getCreateDate());
-		kaleoNotificationImpl.setModifiedDate(kaleoNotification.getModifiedDate());
-		kaleoNotificationImpl.setKaleoClassName(kaleoNotification.getKaleoClassName());
-		kaleoNotificationImpl.setKaleoClassPK(kaleoNotification.getKaleoClassPK());
-		kaleoNotificationImpl.setKaleoDefinitionId(kaleoNotification.getKaleoDefinitionId());
-		kaleoNotificationImpl.setKaleoNodeName(kaleoNotification.getKaleoNodeName());
-		kaleoNotificationImpl.setName(kaleoNotification.getName());
-		kaleoNotificationImpl.setDescription(kaleoNotification.getDescription());
-		kaleoNotificationImpl.setExecutionType(kaleoNotification.getExecutionType());
-		kaleoNotificationImpl.setTemplate(kaleoNotification.getTemplate());
-		kaleoNotificationImpl.setTemplateLanguage(kaleoNotification.getTemplateLanguage());
-		kaleoNotificationImpl.setNotificationTypes(kaleoNotification.getNotificationTypes());
-
-		return kaleoNotificationImpl;
 	}
 
 	/**

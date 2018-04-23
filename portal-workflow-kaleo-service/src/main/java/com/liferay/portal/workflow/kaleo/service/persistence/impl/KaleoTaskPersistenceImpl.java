@@ -1503,8 +1503,6 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 
 	@Override
 	protected KaleoTask removeImpl(KaleoTask kaleoTask) {
-		kaleoTask = toUnwrappedModel(kaleoTask);
-
 		Session session = null;
 
 		try {
@@ -1535,8 +1533,6 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 
 	@Override
 	public KaleoTask updateImpl(KaleoTask kaleoTask) {
-		kaleoTask = toUnwrappedModel(kaleoTask);
-
 		boolean isNew = kaleoTask.isNew();
 
 		KaleoTaskModelImpl kaleoTaskModelImpl = (KaleoTaskModelImpl)kaleoTask;
@@ -1656,31 +1652,6 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		kaleoTask.resetOriginalValues();
 
 		return kaleoTask;
-	}
-
-	protected KaleoTask toUnwrappedModel(KaleoTask kaleoTask) {
-		if (kaleoTask instanceof KaleoTaskImpl) {
-			return kaleoTask;
-		}
-
-		KaleoTaskImpl kaleoTaskImpl = new KaleoTaskImpl();
-
-		kaleoTaskImpl.setNew(kaleoTask.isNew());
-		kaleoTaskImpl.setPrimaryKey(kaleoTask.getPrimaryKey());
-
-		kaleoTaskImpl.setKaleoTaskId(kaleoTask.getKaleoTaskId());
-		kaleoTaskImpl.setGroupId(kaleoTask.getGroupId());
-		kaleoTaskImpl.setCompanyId(kaleoTask.getCompanyId());
-		kaleoTaskImpl.setUserId(kaleoTask.getUserId());
-		kaleoTaskImpl.setUserName(kaleoTask.getUserName());
-		kaleoTaskImpl.setCreateDate(kaleoTask.getCreateDate());
-		kaleoTaskImpl.setModifiedDate(kaleoTask.getModifiedDate());
-		kaleoTaskImpl.setKaleoDefinitionId(kaleoTask.getKaleoDefinitionId());
-		kaleoTaskImpl.setKaleoNodeId(kaleoTask.getKaleoNodeId());
-		kaleoTaskImpl.setName(kaleoTask.getName());
-		kaleoTaskImpl.setDescription(kaleoTask.getDescription());
-
-		return kaleoTaskImpl;
 	}
 
 	/**

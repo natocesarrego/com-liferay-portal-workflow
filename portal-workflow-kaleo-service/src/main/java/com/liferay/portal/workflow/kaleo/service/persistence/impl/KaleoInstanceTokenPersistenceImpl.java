@@ -3005,8 +3005,6 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	@Override
 	protected KaleoInstanceToken removeImpl(
 		KaleoInstanceToken kaleoInstanceToken) {
-		kaleoInstanceToken = toUnwrappedModel(kaleoInstanceToken);
-
 		Session session = null;
 
 		try {
@@ -3037,8 +3035,6 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 
 	@Override
 	public KaleoInstanceToken updateImpl(KaleoInstanceToken kaleoInstanceToken) {
-		kaleoInstanceToken = toUnwrappedModel(kaleoInstanceToken);
-
 		boolean isNew = kaleoInstanceToken.isNew();
 
 		KaleoInstanceTokenModelImpl kaleoInstanceTokenModelImpl = (KaleoInstanceTokenModelImpl)kaleoInstanceToken;
@@ -3254,37 +3250,6 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		kaleoInstanceToken.resetOriginalValues();
 
 		return kaleoInstanceToken;
-	}
-
-	protected KaleoInstanceToken toUnwrappedModel(
-		KaleoInstanceToken kaleoInstanceToken) {
-		if (kaleoInstanceToken instanceof KaleoInstanceTokenImpl) {
-			return kaleoInstanceToken;
-		}
-
-		KaleoInstanceTokenImpl kaleoInstanceTokenImpl = new KaleoInstanceTokenImpl();
-
-		kaleoInstanceTokenImpl.setNew(kaleoInstanceToken.isNew());
-		kaleoInstanceTokenImpl.setPrimaryKey(kaleoInstanceToken.getPrimaryKey());
-
-		kaleoInstanceTokenImpl.setKaleoInstanceTokenId(kaleoInstanceToken.getKaleoInstanceTokenId());
-		kaleoInstanceTokenImpl.setGroupId(kaleoInstanceToken.getGroupId());
-		kaleoInstanceTokenImpl.setCompanyId(kaleoInstanceToken.getCompanyId());
-		kaleoInstanceTokenImpl.setUserId(kaleoInstanceToken.getUserId());
-		kaleoInstanceTokenImpl.setUserName(kaleoInstanceToken.getUserName());
-		kaleoInstanceTokenImpl.setCreateDate(kaleoInstanceToken.getCreateDate());
-		kaleoInstanceTokenImpl.setModifiedDate(kaleoInstanceToken.getModifiedDate());
-		kaleoInstanceTokenImpl.setKaleoDefinitionId(kaleoInstanceToken.getKaleoDefinitionId());
-		kaleoInstanceTokenImpl.setKaleoInstanceId(kaleoInstanceToken.getKaleoInstanceId());
-		kaleoInstanceTokenImpl.setParentKaleoInstanceTokenId(kaleoInstanceToken.getParentKaleoInstanceTokenId());
-		kaleoInstanceTokenImpl.setCurrentKaleoNodeId(kaleoInstanceToken.getCurrentKaleoNodeId());
-		kaleoInstanceTokenImpl.setCurrentKaleoNodeName(kaleoInstanceToken.getCurrentKaleoNodeName());
-		kaleoInstanceTokenImpl.setClassName(kaleoInstanceToken.getClassName());
-		kaleoInstanceTokenImpl.setClassPK(kaleoInstanceToken.getClassPK());
-		kaleoInstanceTokenImpl.setCompleted(kaleoInstanceToken.isCompleted());
-		kaleoInstanceTokenImpl.setCompletionDate(kaleoInstanceToken.getCompletionDate());
-
-		return kaleoInstanceTokenImpl;
 	}
 
 	/**
