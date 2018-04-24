@@ -91,6 +91,7 @@ public interface KaleoDefinitionLocalService extends BaseLocalService,
 	* @param kaleoDefinitionId the primary key for the new kaleo definition
 	* @return the new kaleo definition
 	*/
+	@Transactional(enabled = false)
 	public KaleoDefinition createKaleoDefinition(long kaleoDefinitionId);
 
 	public void deactivateKaleoDefinition(java.lang.String name, int version,
