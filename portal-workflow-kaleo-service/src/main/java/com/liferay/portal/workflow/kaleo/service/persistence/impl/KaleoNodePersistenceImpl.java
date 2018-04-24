@@ -1814,6 +1814,8 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 
 	@Override
 	protected KaleoNode removeImpl(KaleoNode kaleoNode) {
+		kaleoNode = toUnwrappedModel(kaleoNode);
+
 		Session session = null;
 
 		try {
@@ -1844,6 +1846,8 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 
 	@Override
 	public KaleoNode updateImpl(KaleoNode kaleoNode) {
+		kaleoNode = toUnwrappedModel(kaleoNode);
+
 		boolean isNew = kaleoNode.isNew();
 
 		KaleoNodeModelImpl kaleoNodeModelImpl = (KaleoNodeModelImpl)kaleoNode;
@@ -1990,6 +1994,34 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		kaleoNode.resetOriginalValues();
 
 		return kaleoNode;
+	}
+
+	protected KaleoNode toUnwrappedModel(KaleoNode kaleoNode) {
+		if (kaleoNode instanceof KaleoNodeImpl) {
+			return kaleoNode;
+		}
+
+		KaleoNodeImpl kaleoNodeImpl = new KaleoNodeImpl();
+
+		kaleoNodeImpl.setNew(kaleoNode.isNew());
+		kaleoNodeImpl.setPrimaryKey(kaleoNode.getPrimaryKey());
+
+		kaleoNodeImpl.setKaleoNodeId(kaleoNode.getKaleoNodeId());
+		kaleoNodeImpl.setGroupId(kaleoNode.getGroupId());
+		kaleoNodeImpl.setCompanyId(kaleoNode.getCompanyId());
+		kaleoNodeImpl.setUserId(kaleoNode.getUserId());
+		kaleoNodeImpl.setUserName(kaleoNode.getUserName());
+		kaleoNodeImpl.setCreateDate(kaleoNode.getCreateDate());
+		kaleoNodeImpl.setModifiedDate(kaleoNode.getModifiedDate());
+		kaleoNodeImpl.setKaleoDefinitionId(kaleoNode.getKaleoDefinitionId());
+		kaleoNodeImpl.setName(kaleoNode.getName());
+		kaleoNodeImpl.setMetadata(kaleoNode.getMetadata());
+		kaleoNodeImpl.setDescription(kaleoNode.getDescription());
+		kaleoNodeImpl.setType(kaleoNode.getType());
+		kaleoNodeImpl.setInitial(kaleoNode.isInitial());
+		kaleoNodeImpl.setTerminal(kaleoNode.isTerminal());
+
+		return kaleoNodeImpl;
 	}
 
 	/**
