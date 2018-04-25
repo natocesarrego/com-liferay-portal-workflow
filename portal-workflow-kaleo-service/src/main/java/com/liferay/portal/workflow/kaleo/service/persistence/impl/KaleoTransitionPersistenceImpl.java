@@ -1981,7 +1981,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			KaleoTransition kaleoTransition = (KaleoTransition)result;
 
 			if ((kaleoNodeId != kaleoTransition.getKaleoNodeId()) ||
-					(defaultTransition != kaleoTransition.getDefaultTransition())) {
+					(defaultTransition != kaleoTransition.isDefaultTransition())) {
 				result = null;
 			}
 		}
@@ -2035,7 +2035,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 					cacheResult(kaleoTransition);
 
 					if ((kaleoTransition.getKaleoNodeId() != kaleoNodeId) ||
-							(kaleoTransition.getDefaultTransition() != defaultTransition)) {
+							(kaleoTransition.isDefaultTransition() != defaultTransition)) {
 						finderCache.putResult(FINDER_PATH_FETCH_BY_KNI_DT,
 							finderArgs, kaleoTransition);
 					}
@@ -2157,7 +2157,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		finderCache.putResult(FINDER_PATH_FETCH_BY_KNI_DT,
 			new Object[] {
 				kaleoTransition.getKaleoNodeId(),
-				kaleoTransition.getDefaultTransition()
+				kaleoTransition.isDefaultTransition()
 			}, kaleoTransition);
 
 		kaleoTransition.resetOriginalValues();
@@ -2245,7 +2245,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 		args = new Object[] {
 				kaleoTransitionModelImpl.getKaleoNodeId(),
-				kaleoTransitionModelImpl.getDefaultTransition()
+				kaleoTransitionModelImpl.isDefaultTransition()
 			};
 
 		finderCache.putResult(FINDER_PATH_COUNT_BY_KNI_DT, args,
@@ -2280,7 +2280,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		if (clearCurrent) {
 			Object[] args = new Object[] {
 					kaleoTransitionModelImpl.getKaleoNodeId(),
-					kaleoTransitionModelImpl.getDefaultTransition()
+					kaleoTransitionModelImpl.isDefaultTransition()
 				};
 
 			finderCache.removeResult(FINDER_PATH_COUNT_BY_KNI_DT, args);

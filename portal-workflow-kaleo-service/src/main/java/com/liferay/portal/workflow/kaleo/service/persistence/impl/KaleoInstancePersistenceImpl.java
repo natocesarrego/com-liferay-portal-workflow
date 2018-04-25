@@ -3898,7 +3898,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 
 				args = new Object[] {
 						kaleoInstanceModelImpl.getKaleoDefinitionId(),
-						kaleoInstanceModelImpl.getCompleted()
+						kaleoInstanceModelImpl.isCompleted()
 					};
 
 				finderCache.removeResult(FINDER_PATH_COUNT_BY_KDI_C, args);

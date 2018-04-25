@@ -3063,7 +3063,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 				args = new Object[] {
 						kaleoDefinitionModelImpl.getCompanyId(),
-						kaleoDefinitionModelImpl.getActive()
+						kaleoDefinitionModelImpl.isActive()
 					};
 
 				finderCache.removeResult(FINDER_PATH_COUNT_BY_C_A, args);
@@ -3086,7 +3086,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 				args = new Object[] {
 						kaleoDefinitionModelImpl.getCompanyId(),
 						kaleoDefinitionModelImpl.getName(),
-						kaleoDefinitionModelImpl.getActive()
+						kaleoDefinitionModelImpl.isActive()
 					};
 
 				finderCache.removeResult(FINDER_PATH_COUNT_BY_C_N_A, args);
