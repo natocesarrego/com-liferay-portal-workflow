@@ -142,7 +142,7 @@ public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 	}
 
 	@Override
-	public java.lang.Object clone() {
+	public Object clone() {
 		return new KaleoTaskWrapper((KaleoTask)_kaleoTask.clone());
 	}
 
@@ -177,7 +177,7 @@ public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 	* @return the description of this kaleo task
 	*/
 	@Override
-	public java.lang.String getDescription() {
+	public String getDescription() {
 		return _kaleoTask.getDescription();
 	}
 
@@ -253,7 +253,7 @@ public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 	* @return the name of this kaleo task
 	*/
 	@Override
-	public java.lang.String getName() {
+	public String getName() {
 		return _kaleoTask.getName();
 	}
 
@@ -288,7 +288,7 @@ public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 	* @return the user name of this kaleo task
 	*/
 	@Override
-	public java.lang.String getUserName() {
+	public String getUserName() {
 		return _kaleoTask.getUserName();
 	}
 
@@ -298,7 +298,7 @@ public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 	* @return the user uuid of this kaleo task
 	*/
 	@Override
-	public java.lang.String getUserUuid() {
+	public String getUserUuid() {
 		return _kaleoTask.getUserUuid();
 	}
 
@@ -358,7 +358,7 @@ public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 	* @param description the description of this kaleo task
 	*/
 	@Override
-	public void setDescription(java.lang.String description) {
+	public void setDescription(String description) {
 		_kaleoTask.setDescription(description);
 	}
 
@@ -434,7 +434,7 @@ public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 	* @param name the name of this kaleo task
 	*/
 	@Override
-	public void setName(java.lang.String name) {
+	public void setName(String name) {
 		_kaleoTask.setName(name);
 	}
 
@@ -474,7 +474,7 @@ public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 	* @param userName the user name of this kaleo task
 	*/
 	@Override
-	public void setUserName(java.lang.String userName) {
+	public void setUserName(String userName) {
 		_kaleoTask.setUserName(userName);
 	}
 
@@ -484,7 +484,7 @@ public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 	* @param userUuid the user uuid of this kaleo task
 	*/
 	@Override
-	public void setUserUuid(java.lang.String userUuid) {
+	public void setUserUuid(String userUuid) {
 		_kaleoTask.setUserUuid(userUuid);
 	}
 
@@ -499,7 +499,7 @@ public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 	}
 
 	@Override
-	public java.lang.String toString() {
+	public String toString() {
 		return _kaleoTask.toString();
 	}
 
@@ -509,7 +509,7 @@ public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
+	public String toXmlString() {
 		return _kaleoTask.toXmlString();
 	}
 

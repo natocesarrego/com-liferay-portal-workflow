@@ -201,7 +201,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	}
 
 	@Override
-	public java.lang.Object clone() {
+	public Object clone() {
 		return new KaleoTaskInstanceTokenWrapper((KaleoTaskInstanceToken)_kaleoTaskInstanceToken.clone());
 	}
 
@@ -216,7 +216,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* @return the class name of this kaleo task instance token
 	*/
 	@Override
-	public java.lang.String getClassName() {
+	public String getClassName() {
 		return _kaleoTaskInstanceToken.getClassName();
 	}
 
@@ -276,7 +276,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* @return the completion user uuid of this kaleo task instance token
 	*/
 	@Override
-	public java.lang.String getCompletionUserUuid() {
+	public String getCompletionUserUuid() {
 		return _kaleoTaskInstanceToken.getCompletionUserUuid();
 	}
 
@@ -393,7 +393,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* @return the kaleo task name of this kaleo task instance token
 	*/
 	@Override
-	public java.lang.String getKaleoTaskName() {
+	public String getKaleoTaskName() {
 		return _kaleoTaskInstanceToken.getKaleoTaskName();
 	}
 
@@ -438,7 +438,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* @return the user name of this kaleo task instance token
 	*/
 	@Override
-	public java.lang.String getUserName() {
+	public String getUserName() {
 		return _kaleoTaskInstanceToken.getUserName();
 	}
 
@@ -448,7 +448,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* @return the user uuid of this kaleo task instance token
 	*/
 	@Override
-	public java.lang.String getUserUuid() {
+	public String getUserUuid() {
 		return _kaleoTaskInstanceToken.getUserUuid();
 	}
 
@@ -458,7 +458,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* @return the workflow context of this kaleo task instance token
 	*/
 	@Override
-	public java.lang.String getWorkflowContext() {
+	public String getWorkflowContext() {
 		return _kaleoTaskInstanceToken.getWorkflowContext();
 	}
 
@@ -508,7 +508,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* @param className the class name of this kaleo task instance token
 	*/
 	@Override
-	public void setClassName(java.lang.String className) {
+	public void setClassName(String className) {
 		_kaleoTaskInstanceToken.setClassName(className);
 	}
 
@@ -568,7 +568,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* @param completionUserUuid the completion user uuid of this kaleo task instance token
 	*/
 	@Override
-	public void setCompletionUserUuid(java.lang.String completionUserUuid) {
+	public void setCompletionUserUuid(String completionUserUuid) {
 		_kaleoTaskInstanceToken.setCompletionUserUuid(completionUserUuid);
 	}
 
@@ -674,7 +674,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* @param kaleoTaskName the kaleo task name of this kaleo task instance token
 	*/
 	@Override
-	public void setKaleoTaskName(java.lang.String kaleoTaskName) {
+	public void setKaleoTaskName(String kaleoTaskName) {
 		_kaleoTaskInstanceToken.setKaleoTaskName(kaleoTaskName);
 	}
 
@@ -724,7 +724,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* @param userName the user name of this kaleo task instance token
 	*/
 	@Override
-	public void setUserName(java.lang.String userName) {
+	public void setUserName(String userName) {
 		_kaleoTaskInstanceToken.setUserName(userName);
 	}
 
@@ -734,7 +734,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* @param userUuid the user uuid of this kaleo task instance token
 	*/
 	@Override
-	public void setUserUuid(java.lang.String userUuid) {
+	public void setUserUuid(String userUuid) {
 		_kaleoTaskInstanceToken.setUserUuid(userUuid);
 	}
 
@@ -744,7 +744,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* @param workflowContext the workflow context of this kaleo task instance token
 	*/
 	@Override
-	public void setWorkflowContext(java.lang.String workflowContext) {
+	public void setWorkflowContext(String workflowContext) {
 		_kaleoTaskInstanceToken.setWorkflowContext(workflowContext);
 	}
 
@@ -759,7 +759,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	}
 
 	@Override
-	public java.lang.String toString() {
+	public String toString() {
 		return _kaleoTaskInstanceToken.toString();
 	}
 
@@ -769,7 +769,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
+	public String toXmlString() {
 		return _kaleoTaskInstanceToken.toXmlString();
 	}
 

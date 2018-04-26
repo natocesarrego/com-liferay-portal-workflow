@@ -47,8 +47,8 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService,
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction addKaleoAction(
-		java.lang.String kaleoClassName, long kaleoClassPK,
-		long kaleoDefinitionId, java.lang.String kaleoNodeName,
+		String kaleoClassName, long kaleoClassPK, long kaleoDefinitionId,
+		String kaleoNodeName,
 		com.liferay.portal.workflow.kaleo.definition.Action action,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -249,15 +249,14 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService,
 
 	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> getKaleoActions(
-		java.lang.String kaleoClassName, long kaleoClassPK) {
+		String kaleoClassName, long kaleoClassPK) {
 		return _kaleoActionLocalService.getKaleoActions(kaleoClassName,
 			kaleoClassPK);
 	}
 
 	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> getKaleoActions(
-		java.lang.String kaleoClassName, long kaleoClassPK,
-		java.lang.String executionType) {
+		String kaleoClassName, long kaleoClassPK, String executionType) {
 		return _kaleoActionLocalService.getKaleoActions(kaleoClassName,
 			kaleoClassPK, executionType);
 	}
@@ -278,7 +277,7 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService,
 	* @return the OSGi service identifier
 	*/
 	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
+	public String getOSGiServiceIdentifier() {
 		return _kaleoActionLocalService.getOSGiServiceIdentifier();
 	}
 

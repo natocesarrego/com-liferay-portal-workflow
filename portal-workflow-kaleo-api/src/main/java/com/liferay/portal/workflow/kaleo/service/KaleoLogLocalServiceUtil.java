@@ -45,7 +45,7 @@ public class KaleoLogLocalServiceUtil {
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog addActionExecutionKaleoLog(
 		com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken kaleoInstanceToken,
 		com.liferay.portal.workflow.kaleo.model.KaleoAction kaleoAction,
-		long startTime, long endTime, java.lang.String comment,
+		long startTime, long endTime, String comment,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
@@ -88,8 +88,8 @@ public class KaleoLogLocalServiceUtil {
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog addTaskAssignmentKaleoLog(
 		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> previousKaleoTaskAssignmentInstances,
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
-		java.lang.String comment,
-		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
+		String comment,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
@@ -99,8 +99,8 @@ public class KaleoLogLocalServiceUtil {
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog addTaskCompletionKaleoLog(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
-		java.lang.String comment,
-		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
+		String comment,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
@@ -110,8 +110,8 @@ public class KaleoLogLocalServiceUtil {
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoLog addTaskUpdateKaleoLog(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
-		java.lang.String comment,
-		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
+		String comment,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
@@ -285,8 +285,8 @@ public class KaleoLogLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoInstanceKaleoLogs(
-		long kaleoInstanceId, java.util.List<java.lang.Integer> logTypes,
-		int start, int end,
+		long kaleoInstanceId, java.util.List<Integer> logTypes, int start,
+		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator) {
 		return getService()
 				   .getKaleoInstanceKaleoLogs(kaleoInstanceId, logTypes, start,
@@ -294,7 +294,7 @@ public class KaleoLogLocalServiceUtil {
 	}
 
 	public static int getKaleoInstanceKaleoLogsCount(long kaleoInstanceId,
-		java.util.List<java.lang.Integer> logTypes) {
+		java.util.List<Integer> logTypes) {
 		return getService()
 				   .getKaleoInstanceKaleoLogsCount(kaleoInstanceId, logTypes);
 	}
@@ -338,8 +338,8 @@ public class KaleoLogLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoTaskInstanceTokenKaleoLogs(
-		long kaleoTaskInstanceTokenId,
-		java.util.List<java.lang.Integer> logTypes, int start, int end,
+		long kaleoTaskInstanceTokenId, java.util.List<Integer> logTypes,
+		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoLog> orderByComparator) {
 		return getService()
 				   .getKaleoTaskInstanceTokenKaleoLogs(kaleoTaskInstanceTokenId,
@@ -347,8 +347,7 @@ public class KaleoLogLocalServiceUtil {
 	}
 
 	public static int getKaleoTaskInstanceTokenKaleoLogsCount(
-		long kaleoTaskInstanceTokenId,
-		java.util.List<java.lang.Integer> logTypes) {
+		long kaleoTaskInstanceTokenId, java.util.List<Integer> logTypes) {
 		return getService()
 				   .getKaleoTaskInstanceTokenKaleoLogsCount(kaleoTaskInstanceTokenId,
 			logTypes);
@@ -359,7 +358,7 @@ public class KaleoLogLocalServiceUtil {
 	*
 	* @return the OSGi service identifier
 	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
+	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
 	}
 

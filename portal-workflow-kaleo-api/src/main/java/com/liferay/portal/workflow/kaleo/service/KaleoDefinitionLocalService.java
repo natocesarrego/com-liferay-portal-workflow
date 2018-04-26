@@ -68,7 +68,7 @@ public interface KaleoDefinitionLocalService extends BaseLocalService,
 	public void activateKaleoDefinition(long kaleoDefinitionId,
 		ServiceContext serviceContext) throws PortalException;
 
-	public void activateKaleoDefinition(java.lang.String name, int version,
+	public void activateKaleoDefinition(String name, int version,
 		ServiceContext serviceContext) throws PortalException;
 
 	/**
@@ -80,10 +80,9 @@ public interface KaleoDefinitionLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.REINDEX)
 	public KaleoDefinition addKaleoDefinition(KaleoDefinition kaleoDefinition);
 
-	public KaleoDefinition addKaleoDefinition(java.lang.String name,
-		java.lang.String title, java.lang.String description,
-		java.lang.String content, int version, ServiceContext serviceContext)
-		throws PortalException;
+	public KaleoDefinition addKaleoDefinition(String name, String title,
+		String description, String content, int version,
+		ServiceContext serviceContext) throws PortalException;
 
 	/**
 	* Creates a new kaleo definition with the primary key. Does not add the kaleo definition to the database.
@@ -94,7 +93,7 @@ public interface KaleoDefinitionLocalService extends BaseLocalService,
 	@Transactional(enabled = false)
 	public KaleoDefinition createKaleoDefinition(long kaleoDefinitionId);
 
-	public void deactivateKaleoDefinition(java.lang.String name, int version,
+	public void deactivateKaleoDefinition(String name, int version,
 		ServiceContext serviceContext) throws PortalException;
 
 	public void deleteCompanyKaleoDefinitions(long companyId);
@@ -120,7 +119,7 @@ public interface KaleoDefinitionLocalService extends BaseLocalService,
 	public KaleoDefinition deleteKaleoDefinition(long kaleoDefinitionId)
 		throws PortalException;
 
-	public void deleteKaleoDefinition(java.lang.String name, int version,
+	public void deleteKaleoDefinition(String name, int version,
 		ServiceContext serviceContext) throws PortalException;
 
 	/**
@@ -193,7 +192,7 @@ public interface KaleoDefinitionLocalService extends BaseLocalService,
 	public KaleoDefinition fetchKaleoDefinition(long kaleoDefinitionId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KaleoDefinition fetchLatestKaleoDefinition(java.lang.String name,
+	public KaleoDefinition fetchLatestKaleoDefinition(String name,
 		ServiceContext serviceContext) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -214,8 +213,8 @@ public interface KaleoDefinitionLocalService extends BaseLocalService,
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KaleoDefinition getKaleoDefinition(java.lang.String name,
-		int version, ServiceContext serviceContext) throws PortalException;
+	public KaleoDefinition getKaleoDefinition(String name, int version,
+		ServiceContext serviceContext) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KaleoDefinition> getKaleoDefinitions(boolean active, int start,
@@ -242,15 +241,14 @@ public interface KaleoDefinitionLocalService extends BaseLocalService,
 		ServiceContext serviceContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<KaleoDefinition> getKaleoDefinitions(java.lang.String name,
+	public List<KaleoDefinition> getKaleoDefinitions(String name,
 		boolean active, int start, int end,
 		OrderByComparator<KaleoDefinition> orderByComparator,
 		ServiceContext serviceContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<KaleoDefinition> getKaleoDefinitions(java.lang.String name,
-		int start, int end,
-		OrderByComparator<KaleoDefinition> orderByComparator,
+	public List<KaleoDefinition> getKaleoDefinitions(String name, int start,
+		int end, OrderByComparator<KaleoDefinition> orderByComparator,
 		ServiceContext serviceContext);
 
 	/**
@@ -269,15 +267,15 @@ public interface KaleoDefinitionLocalService extends BaseLocalService,
 	public int getKaleoDefinitionsCount(ServiceContext serviceContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKaleoDefinitionsCount(java.lang.String name, boolean active,
+	public int getKaleoDefinitionsCount(String name, boolean active,
 		ServiceContext serviceContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKaleoDefinitionsCount(java.lang.String name,
+	public int getKaleoDefinitionsCount(String name,
 		ServiceContext serviceContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KaleoDefinition getLatestKaleoDefinition(java.lang.String name,
+	public KaleoDefinition getLatestKaleoDefinition(String name,
 		ServiceContext serviceContext) throws PortalException;
 
 	/**
@@ -285,7 +283,7 @@ public interface KaleoDefinitionLocalService extends BaseLocalService,
 	*
 	* @return the OSGi service identifier
 	*/
-	public java.lang.String getOSGiServiceIdentifier();
+	public String getOSGiServiceIdentifier();
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -293,8 +291,7 @@ public interface KaleoDefinitionLocalService extends BaseLocalService,
 		throws PortalException;
 
 	public KaleoDefinition incrementKaleoDefinition(Definition definition,
-		java.lang.String title, ServiceContext serviceContext)
-		throws PortalException;
+		String title, ServiceContext serviceContext) throws PortalException;
 
 	/**
 	* Updates the kaleo definition in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
@@ -306,7 +303,6 @@ public interface KaleoDefinitionLocalService extends BaseLocalService,
 	public KaleoDefinition updateKaleoDefinition(
 		KaleoDefinition kaleoDefinition);
 
-	public KaleoDefinition updateTitle(java.lang.String name, int version,
-		java.lang.String title, ServiceContext serviceContext)
-		throws PortalException;
+	public KaleoDefinition updateTitle(String name, int version, String title,
+		ServiceContext serviceContext) throws PortalException;
 }

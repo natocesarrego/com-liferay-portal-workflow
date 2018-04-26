@@ -72,9 +72,9 @@ public interface KaleoInstanceLocalService extends BaseLocalService,
 	public KaleoInstance addKaleoInstance(KaleoInstance kaleoInstance);
 
 	public KaleoInstance addKaleoInstance(long kaleoDefinitionId,
-		java.lang.String kaleoDefinitionName, int kaleoDefinitionVersion,
-		Map<java.lang.String, Serializable> workflowContext,
-		ServiceContext serviceContext) throws PortalException;
+		String kaleoDefinitionName, int kaleoDefinitionVersion,
+		Map<String, Serializable> workflowContext, ServiceContext serviceContext)
+		throws PortalException;
 
 	public KaleoInstance completeKaleoInstance(long kaleoInstanceId)
 		throws PortalException;
@@ -213,22 +213,20 @@ public interface KaleoInstanceLocalService extends BaseLocalService,
 	public List<KaleoInstance> getKaleoInstances(int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<KaleoInstance> getKaleoInstances(java.lang.Long userId,
-		java.lang.String assetClassName, java.lang.Long assetClassPK,
-		java.lang.Boolean completed, int start, int end,
+	public List<KaleoInstance> getKaleoInstances(Long userId,
+		String assetClassName, Long assetClassPK, Boolean completed, int start,
+		int end, OrderByComparator<KaleoInstance> orderByComparator,
+		ServiceContext serviceContext);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<KaleoInstance> getKaleoInstances(Long userId,
+		String[] assetClassNames, Boolean completed, int start, int end,
 		OrderByComparator<KaleoInstance> orderByComparator,
 		ServiceContext serviceContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<KaleoInstance> getKaleoInstances(java.lang.Long userId,
-		java.lang.String[] assetClassNames, java.lang.Boolean completed,
-		int start, int end, OrderByComparator<KaleoInstance> orderByComparator,
-		ServiceContext serviceContext);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<KaleoInstance> getKaleoInstances(
-		java.lang.String kaleoDefinitionName, int kaleoDefinitionVersion,
-		boolean completed, int start, int end,
+	public List<KaleoInstance> getKaleoInstances(String kaleoDefinitionName,
+		int kaleoDefinitionVersion, boolean completed, int start, int end,
 		OrderByComparator<KaleoInstance> orderByComparator,
 		ServiceContext serviceContext);
 
@@ -244,17 +242,15 @@ public interface KaleoInstanceLocalService extends BaseLocalService,
 	public int getKaleoInstancesCount(long kaleoDefinitionId, boolean completed);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKaleoInstancesCount(java.lang.Long userId,
-		java.lang.String assetClassName, java.lang.Long assetClassPK,
-		java.lang.Boolean completed, ServiceContext serviceContext);
+	public int getKaleoInstancesCount(Long userId, String assetClassName,
+		Long assetClassPK, Boolean completed, ServiceContext serviceContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKaleoInstancesCount(java.lang.Long userId,
-		java.lang.String[] assetClassNames, java.lang.Boolean completed,
-		ServiceContext serviceContext);
+	public int getKaleoInstancesCount(Long userId, String[] assetClassNames,
+		Boolean completed, ServiceContext serviceContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKaleoInstancesCount(java.lang.String kaleoDefinitionName,
+	public int getKaleoInstancesCount(String kaleoDefinitionName,
 		int kaleoDefinitionVersion, boolean completed,
 		ServiceContext serviceContext);
 
@@ -263,7 +259,7 @@ public interface KaleoInstanceLocalService extends BaseLocalService,
 	*
 	* @return the OSGi service identifier
 	*/
-	public java.lang.String getOSGiServiceIdentifier();
+	public String getOSGiServiceIdentifier();
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -271,16 +267,15 @@ public interface KaleoInstanceLocalService extends BaseLocalService,
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<KaleoInstance> search(java.lang.Long userId,
-		java.lang.String assetType, java.lang.String nodeName,
-		java.lang.String kaleoDefinitionName, java.lang.Boolean completed,
+	public List<KaleoInstance> search(Long userId, String assetType,
+		String nodeName, String kaleoDefinitionName, Boolean completed,
 		int start, int end, OrderByComparator<KaleoInstance> orderByComparator,
 		ServiceContext serviceContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int searchCount(java.lang.Long userId, java.lang.String assetType,
-		java.lang.String nodeName, java.lang.String kaleoDefinitionName,
-		java.lang.Boolean completed, ServiceContext serviceContext);
+	public int searchCount(Long userId, String assetType, String nodeName,
+		String kaleoDefinitionName, Boolean completed,
+		ServiceContext serviceContext);
 
 	/**
 	* Updates the kaleo instance in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
@@ -292,6 +287,6 @@ public interface KaleoInstanceLocalService extends BaseLocalService,
 	public KaleoInstance updateKaleoInstance(KaleoInstance kaleoInstance);
 
 	public KaleoInstance updateKaleoInstance(long kaleoInstanceId,
-		Map<java.lang.String, Serializable> workflowContext,
-		ServiceContext serviceContext) throws PortalException;
+		Map<String, Serializable> workflowContext, ServiceContext serviceContext)
+		throws PortalException;
 }

@@ -181,7 +181,7 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 	}
 
 	@Override
-	public java.lang.Object clone() {
+	public Object clone() {
 		return new KaleoInstanceWrapper((KaleoInstance)_kaleoInstance.clone());
 	}
 
@@ -196,7 +196,7 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 	* @return the class name of this kaleo instance
 	*/
 	@Override
-	public java.lang.String getClassName() {
+	public String getClassName() {
 		return _kaleoInstance.getClassName();
 	}
 
@@ -287,7 +287,7 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 	* @return the kaleo definition name of this kaleo instance
 	*/
 	@Override
-	public java.lang.String getKaleoDefinitionName() {
+	public String getKaleoDefinitionName() {
 		return _kaleoInstance.getKaleoDefinitionName();
 	}
 
@@ -338,8 +338,7 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 
 	@Override
 	public KaleoInstanceToken getRootKaleoInstanceToken(
-		Map<java.lang.String, Serializable> workflowContext,
-		ServiceContext serviceContext)
+		Map<String, Serializable> workflowContext, ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoInstance.getRootKaleoInstanceToken(workflowContext,
 			serviceContext);
@@ -378,7 +377,7 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 	* @return the user name of this kaleo instance
 	*/
 	@Override
-	public java.lang.String getUserName() {
+	public String getUserName() {
 		return _kaleoInstance.getUserName();
 	}
 
@@ -388,7 +387,7 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 	* @return the user uuid of this kaleo instance
 	*/
 	@Override
-	public java.lang.String getUserUuid() {
+	public String getUserUuid() {
 		return _kaleoInstance.getUserUuid();
 	}
 
@@ -398,7 +397,7 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 	* @return the workflow context of this kaleo instance
 	*/
 	@Override
-	public java.lang.String getWorkflowContext() {
+	public String getWorkflowContext() {
 		return _kaleoInstance.getWorkflowContext();
 	}
 
@@ -448,7 +447,7 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 	* @param className the class name of this kaleo instance
 	*/
 	@Override
-	public void setClassName(java.lang.String className) {
+	public void setClassName(String className) {
 		_kaleoInstance.setClassName(className);
 	}
 
@@ -544,7 +543,7 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 	* @param kaleoDefinitionName the kaleo definition name of this kaleo instance
 	*/
 	@Override
-	public void setKaleoDefinitionName(java.lang.String kaleoDefinitionName) {
+	public void setKaleoDefinitionName(String kaleoDefinitionName) {
 		_kaleoInstance.setKaleoDefinitionName(kaleoDefinitionName);
 	}
 
@@ -624,7 +623,7 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 	* @param userName the user name of this kaleo instance
 	*/
 	@Override
-	public void setUserName(java.lang.String userName) {
+	public void setUserName(String userName) {
 		_kaleoInstance.setUserName(userName);
 	}
 
@@ -634,7 +633,7 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 	* @param userUuid the user uuid of this kaleo instance
 	*/
 	@Override
-	public void setUserUuid(java.lang.String userUuid) {
+	public void setUserUuid(String userUuid) {
 		_kaleoInstance.setUserUuid(userUuid);
 	}
 
@@ -644,7 +643,7 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 	* @param workflowContext the workflow context of this kaleo instance
 	*/
 	@Override
-	public void setWorkflowContext(java.lang.String workflowContext) {
+	public void setWorkflowContext(String workflowContext) {
 		_kaleoInstance.setWorkflowContext(workflowContext);
 	}
 
@@ -659,7 +658,7 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 	}
 
 	@Override
-	public java.lang.String toString() {
+	public String toString() {
 		return _kaleoInstance.toString();
 	}
 
@@ -669,7 +668,7 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
+	public String toXmlString() {
 		return _kaleoInstance.toXmlString();
 	}
 

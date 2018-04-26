@@ -48,9 +48,9 @@ public class KaleoInstanceLocalServiceWrapper
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance addKaleoInstance(
-		long kaleoDefinitionId, java.lang.String kaleoDefinitionName,
+		long kaleoDefinitionId, String kaleoDefinitionName,
 		int kaleoDefinitionVersion,
-		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoInstanceLocalService.addKaleoInstance(kaleoDefinitionId,
@@ -257,9 +257,8 @@ public class KaleoInstanceLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
-		java.lang.Long userId, java.lang.String assetClassName,
-		java.lang.Long assetClassPK, java.lang.Boolean completed, int start,
-		int end,
+		Long userId, String assetClassName, Long assetClassPK,
+		Boolean completed, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 		return _kaleoInstanceLocalService.getKaleoInstances(userId,
@@ -269,8 +268,8 @@ public class KaleoInstanceLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
-		java.lang.Long userId, java.lang.String[] assetClassNames,
-		java.lang.Boolean completed, int start, int end,
+		Long userId, String[] assetClassNames, Boolean completed, int start,
+		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 		return _kaleoInstanceLocalService.getKaleoInstances(userId,
@@ -280,7 +279,7 @@ public class KaleoInstanceLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
-		java.lang.String kaleoDefinitionName, int kaleoDefinitionVersion,
+		String kaleoDefinitionName, int kaleoDefinitionVersion,
 		boolean completed, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
@@ -306,24 +305,23 @@ public class KaleoInstanceLocalServiceWrapper
 	}
 
 	@Override
-	public int getKaleoInstancesCount(java.lang.Long userId,
-		java.lang.String assetClassName, java.lang.Long assetClassPK,
-		java.lang.Boolean completed,
+	public int getKaleoInstancesCount(Long userId, String assetClassName,
+		Long assetClassPK, Boolean completed,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 		return _kaleoInstanceLocalService.getKaleoInstancesCount(userId,
 			assetClassName, assetClassPK, completed, serviceContext);
 	}
 
 	@Override
-	public int getKaleoInstancesCount(java.lang.Long userId,
-		java.lang.String[] assetClassNames, java.lang.Boolean completed,
+	public int getKaleoInstancesCount(Long userId, String[] assetClassNames,
+		Boolean completed,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 		return _kaleoInstanceLocalService.getKaleoInstancesCount(userId,
 			assetClassNames, completed, serviceContext);
 	}
 
 	@Override
-	public int getKaleoInstancesCount(java.lang.String kaleoDefinitionName,
+	public int getKaleoInstancesCount(String kaleoDefinitionName,
 		int kaleoDefinitionVersion, boolean completed,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 		return _kaleoInstanceLocalService.getKaleoInstancesCount(kaleoDefinitionName,
@@ -336,7 +334,7 @@ public class KaleoInstanceLocalServiceWrapper
 	* @return the OSGi service identifier
 	*/
 	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
+	public String getOSGiServiceIdentifier() {
 		return _kaleoInstanceLocalService.getOSGiServiceIdentifier();
 	}
 
@@ -349,9 +347,8 @@ public class KaleoInstanceLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> search(
-		java.lang.Long userId, java.lang.String assetType,
-		java.lang.String nodeName, java.lang.String kaleoDefinitionName,
-		java.lang.Boolean completed, int start, int end,
+		Long userId, String assetType, String nodeName,
+		String kaleoDefinitionName, Boolean completed, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoInstance> orderByComparator,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 		return _kaleoInstanceLocalService.search(userId, assetType, nodeName,
@@ -360,9 +357,8 @@ public class KaleoInstanceLocalServiceWrapper
 	}
 
 	@Override
-	public int searchCount(java.lang.Long userId, java.lang.String assetType,
-		java.lang.String nodeName, java.lang.String kaleoDefinitionName,
-		java.lang.Boolean completed,
+	public int searchCount(Long userId, String assetType, String nodeName,
+		String kaleoDefinitionName, Boolean completed,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 		return _kaleoInstanceLocalService.searchCount(userId, assetType,
 			nodeName, kaleoDefinitionName, completed, serviceContext);
@@ -383,7 +379,7 @@ public class KaleoInstanceLocalServiceWrapper
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance updateKaleoInstance(
 		long kaleoInstanceId,
-		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
+		java.util.Map<String, java.io.Serializable> workflowContext,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoInstanceLocalService.updateKaleoInstance(kaleoInstanceId,

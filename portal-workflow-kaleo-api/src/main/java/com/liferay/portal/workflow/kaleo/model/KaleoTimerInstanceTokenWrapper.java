@@ -210,7 +210,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	}
 
 	@Override
-	public java.lang.Object clone() {
+	public Object clone() {
 		return new KaleoTimerInstanceTokenWrapper((KaleoTimerInstanceToken)_kaleoTimerInstanceToken.clone());
 	}
 
@@ -275,7 +275,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	* @return the completion user uuid of this kaleo timer instance token
 	*/
 	@Override
-	public java.lang.String getCompletionUserUuid() {
+	public String getCompletionUserUuid() {
 		return _kaleoTimerInstanceToken.getCompletionUserUuid();
 	}
 
@@ -310,7 +310,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	* @return the kaleo class name of this kaleo timer instance token
 	*/
 	@Override
-	public java.lang.String getKaleoClassName() {
+	public String getKaleoClassName() {
 		return _kaleoTimerInstanceToken.getKaleoClassName();
 	}
 
@@ -407,7 +407,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	* @return the kaleo timer name of this kaleo timer instance token
 	*/
 	@Override
-	public java.lang.String getKaleoTimerName() {
+	public String getKaleoTimerName() {
 		return _kaleoTimerInstanceToken.getKaleoTimerName();
 	}
 
@@ -452,7 +452,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	* @return the user name of this kaleo timer instance token
 	*/
 	@Override
-	public java.lang.String getUserName() {
+	public String getUserName() {
 		return _kaleoTimerInstanceToken.getUserName();
 	}
 
@@ -462,7 +462,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	* @return the user uuid of this kaleo timer instance token
 	*/
 	@Override
-	public java.lang.String getUserUuid() {
+	public String getUserUuid() {
 		return _kaleoTimerInstanceToken.getUserUuid();
 	}
 
@@ -472,7 +472,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	* @return the workflow context of this kaleo timer instance token
 	*/
 	@Override
-	public java.lang.String getWorkflowContext() {
+	public String getWorkflowContext() {
 		return _kaleoTimerInstanceToken.getWorkflowContext();
 	}
 
@@ -582,7 +582,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	* @param completionUserUuid the completion user uuid of this kaleo timer instance token
 	*/
 	@Override
-	public void setCompletionUserUuid(java.lang.String completionUserUuid) {
+	public void setCompletionUserUuid(String completionUserUuid) {
 		_kaleoTimerInstanceToken.setCompletionUserUuid(completionUserUuid);
 	}
 
@@ -628,7 +628,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	* @param kaleoClassName the kaleo class name of this kaleo timer instance token
 	*/
 	@Override
-	public void setKaleoClassName(java.lang.String kaleoClassName) {
+	public void setKaleoClassName(String kaleoClassName) {
 		_kaleoTimerInstanceToken.setKaleoClassName(kaleoClassName);
 	}
 
@@ -708,7 +708,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	* @param kaleoTimerName the kaleo timer name of this kaleo timer instance token
 	*/
 	@Override
-	public void setKaleoTimerName(java.lang.String kaleoTimerName) {
+	public void setKaleoTimerName(String kaleoTimerName) {
 		_kaleoTimerInstanceToken.setKaleoTimerName(kaleoTimerName);
 	}
 
@@ -758,7 +758,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	* @param userName the user name of this kaleo timer instance token
 	*/
 	@Override
-	public void setUserName(java.lang.String userName) {
+	public void setUserName(String userName) {
 		_kaleoTimerInstanceToken.setUserName(userName);
 	}
 
@@ -768,7 +768,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	* @param userUuid the user uuid of this kaleo timer instance token
 	*/
 	@Override
-	public void setUserUuid(java.lang.String userUuid) {
+	public void setUserUuid(String userUuid) {
 		_kaleoTimerInstanceToken.setUserUuid(userUuid);
 	}
 
@@ -778,7 +778,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	* @param workflowContext the workflow context of this kaleo timer instance token
 	*/
 	@Override
-	public void setWorkflowContext(java.lang.String workflowContext) {
+	public void setWorkflowContext(String workflowContext) {
 		_kaleoTimerInstanceToken.setWorkflowContext(workflowContext);
 	}
 
@@ -793,7 +793,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	}
 
 	@Override
-	public java.lang.String toString() {
+	public String toString() {
 		return _kaleoTimerInstanceToken.toString();
 	}
 
@@ -803,7 +803,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
+	public String toXmlString() {
 		return _kaleoTimerInstanceToken.toXmlString();
 	}
 

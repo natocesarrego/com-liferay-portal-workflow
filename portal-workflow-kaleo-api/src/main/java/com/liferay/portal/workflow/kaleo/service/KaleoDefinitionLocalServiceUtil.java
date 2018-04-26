@@ -57,8 +57,7 @@ public class KaleoDefinitionLocalServiceUtil {
 		getService().activateKaleoDefinition(kaleoDefinitionId, serviceContext);
 	}
 
-	public static void activateKaleoDefinition(java.lang.String name,
-		int version,
+	public static void activateKaleoDefinition(String name, int version,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().activateKaleoDefinition(name, version, serviceContext);
@@ -76,8 +75,8 @@ public class KaleoDefinitionLocalServiceUtil {
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition addKaleoDefinition(
-		java.lang.String name, java.lang.String title,
-		java.lang.String description, java.lang.String content, int version,
+		String name, String title, String description, String content,
+		int version,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
@@ -96,8 +95,7 @@ public class KaleoDefinitionLocalServiceUtil {
 		return getService().createKaleoDefinition(kaleoDefinitionId);
 	}
 
-	public static void deactivateKaleoDefinition(java.lang.String name,
-		int version,
+	public static void deactivateKaleoDefinition(String name, int version,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deactivateKaleoDefinition(name, version, serviceContext);
@@ -131,8 +129,7 @@ public class KaleoDefinitionLocalServiceUtil {
 		return getService().deleteKaleoDefinition(kaleoDefinitionId);
 	}
 
-	public static void deleteKaleoDefinition(java.lang.String name,
-		int version,
+	public static void deleteKaleoDefinition(String name, int version,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteKaleoDefinition(name, version, serviceContext);
@@ -231,7 +228,7 @@ public class KaleoDefinitionLocalServiceUtil {
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition fetchLatestKaleoDefinition(
-		java.lang.String name,
+		String name,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().fetchLatestKaleoDefinition(name, serviceContext);
@@ -259,7 +256,7 @@ public class KaleoDefinitionLocalServiceUtil {
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition getKaleoDefinition(
-		java.lang.String name, int version,
+		String name, int version,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getKaleoDefinition(name, version, serviceContext);
@@ -300,7 +297,7 @@ public class KaleoDefinitionLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
-		java.lang.String name, boolean active, int start, int end,
+		String name, boolean active, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 		return getService()
@@ -309,7 +306,7 @@ public class KaleoDefinitionLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
-		java.lang.String name, int start, int end,
+		String name, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> orderByComparator,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 		return getService()
@@ -336,20 +333,19 @@ public class KaleoDefinitionLocalServiceUtil {
 		return getService().getKaleoDefinitionsCount(serviceContext);
 	}
 
-	public static int getKaleoDefinitionsCount(java.lang.String name,
-		boolean active,
+	public static int getKaleoDefinitionsCount(String name, boolean active,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 		return getService()
 				   .getKaleoDefinitionsCount(name, active, serviceContext);
 	}
 
-	public static int getKaleoDefinitionsCount(java.lang.String name,
+	public static int getKaleoDefinitionsCount(String name,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 		return getService().getKaleoDefinitionsCount(name, serviceContext);
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition getLatestKaleoDefinition(
-		java.lang.String name,
+		String name,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getLatestKaleoDefinition(name, serviceContext);
@@ -360,7 +356,7 @@ public class KaleoDefinitionLocalServiceUtil {
 	*
 	* @return the OSGi service identifier
 	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
+	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
 	}
 
@@ -372,7 +368,7 @@ public class KaleoDefinitionLocalServiceUtil {
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition incrementKaleoDefinition(
 		com.liferay.portal.workflow.kaleo.definition.Definition definition,
-		java.lang.String title,
+		String title,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
@@ -391,7 +387,7 @@ public class KaleoDefinitionLocalServiceUtil {
 	}
 
 	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition updateTitle(
-		java.lang.String name, int version, java.lang.String title,
+		String name, int version, String title,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().updateTitle(name, version, title, serviceContext);
