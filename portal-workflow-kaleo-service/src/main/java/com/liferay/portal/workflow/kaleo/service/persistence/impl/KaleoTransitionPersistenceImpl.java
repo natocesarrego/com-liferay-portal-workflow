@@ -1782,13 +1782,6 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 					result = kaleoTransition;
 
 					cacheResult(kaleoTransition);
-
-					if ((kaleoTransition.getKaleoNodeId() != kaleoNodeId) ||
-							(kaleoTransition.getName() == null) ||
-							!kaleoTransition.getName().equals(name)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_KNI_N,
-							finderArgs, kaleoTransition);
-					}
 				}
 			}
 			catch (Exception e) {
@@ -2036,12 +2029,6 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 					result = kaleoTransition;
 
 					cacheResult(kaleoTransition);
-
-					if ((kaleoTransition.getKaleoNodeId() != kaleoNodeId) ||
-							(kaleoTransition.isDefaultTransition() != defaultTransition)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_KNI_DT,
-							finderArgs, kaleoTransition);
-					}
 				}
 			}
 			catch (Exception e) {

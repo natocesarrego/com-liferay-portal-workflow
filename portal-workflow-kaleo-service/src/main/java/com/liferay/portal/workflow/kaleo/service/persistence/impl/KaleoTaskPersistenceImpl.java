@@ -1227,11 +1227,6 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 					result = kaleoTask;
 
 					cacheResult(kaleoTask);
-
-					if ((kaleoTask.getKaleoNodeId() != kaleoNodeId)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_KALEONODEID,
-							finderArgs, kaleoTask);
-					}
 				}
 			}
 			catch (Exception e) {

@@ -1241,11 +1241,6 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 					result = kaleoCondition;
 
 					cacheResult(kaleoCondition);
-
-					if ((kaleoCondition.getKaleoNodeId() != kaleoNodeId)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_KALEONODEID,
-							finderArgs, kaleoCondition);
-					}
 				}
 			}
 			catch (Exception e) {

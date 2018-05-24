@@ -1905,14 +1905,6 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 					result = kaleoDefinition;
 
 					cacheResult(kaleoDefinition);
-
-					if ((kaleoDefinition.getCompanyId() != companyId) ||
-							(kaleoDefinition.getName() == null) ||
-							!kaleoDefinition.getName().equals(name) ||
-							(kaleoDefinition.getVersion() != version)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_C_N_V,
-							finderArgs, kaleoDefinition);
-					}
 				}
 			}
 			catch (Exception e) {
