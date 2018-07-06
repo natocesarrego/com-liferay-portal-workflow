@@ -75,6 +75,8 @@ WorkflowDefinitionSearch workflowDefinitionSearch = new WorkflowDefinitionSearch
 	</aui:nav-bar-search>
 </aui:nav-bar>
 
+<liferay-ui:error exception="<%= WorkflowDefinitionFileException.class %>" message="please-enter-a-valid-file" />
+
 <liferay-frontend:management-bar
 	searchContainerId="workflowDefinitions"
 >
