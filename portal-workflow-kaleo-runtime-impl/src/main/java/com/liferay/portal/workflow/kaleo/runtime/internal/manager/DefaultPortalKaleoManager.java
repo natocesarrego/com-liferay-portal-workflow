@@ -164,7 +164,6 @@ public class DefaultPortalKaleoManager
 			}
 
 			User defaultUser = userLocalService.getDefaultUser(companyId);
-
 			String localizedTitle = LocalizationUtil.updateLocalization(
 				StringPool.BLANK, "title", definitionName,
 				LocaleUtil.toLanguageId(LocaleUtil.getDefault()));
