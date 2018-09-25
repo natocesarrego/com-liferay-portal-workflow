@@ -76,7 +76,6 @@ public class RoleModelListener extends BaseModelListener<Role> {
 				}
 
 			});
-
 		actionableDynamicQuery.setPerformActionMethod(
 			new ActionableDynamicQuery.
 				PerformActionMethod<KaleoTaskAssignment>() {
