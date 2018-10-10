@@ -64,17 +64,16 @@ public class CompleteTaskMVCActionCommand
 			actionRequest, "transitionName");
 		String comment = ParamUtil.getString(actionRequest, "comment");
 
-		long userId = themeDisplay.getUserId();
-
 		Map<String, Serializable> workflowContext = _getWorkflowContext(
 			themeDisplay.getCompanyId(), workflowTaskId);
 
 		workflowContext.put(
-			WorkflowConstants.CONTEXT_USER_ID, String.valueOf(userId));
+			WorkflowConstants.CONTEXT_USER_ID,
+			String.valueOf(themeDisplay.getUserId()));
 
 		WorkflowTaskManagerUtil.completeWorkflowTask(
-			themeDisplay.getCompanyId(), userId, workflowTaskId, transitionName,
-			comment, workflowContext);
+			themeDisplay.getCompanyId(), themeDisplay.getUserId(),
+			workflowTaskId, transitionName, comment, workflowContext);
 	}
 
 	private Map<String, Serializable> _getWorkflowContext(
