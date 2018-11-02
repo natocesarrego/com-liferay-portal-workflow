@@ -698,6 +698,8 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		int start, int end,
 		OrderByComparator<KaleoDefinition> orderByComparator,
 		boolean retrieveFromCache) {
+		name = Objects.toString(name, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -726,7 +728,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoDefinition kaleoDefinition : list) {
 					if ((companyId != kaleoDefinition.getCompanyId()) ||
-							!Objects.equals(name, kaleoDefinition.getName())) {
+							!name.equals(kaleoDefinition.getName())) {
 						list = null;
 
 						break;
@@ -752,10 +754,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_C_N_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_N_NAME_3);
 			}
 			else {
@@ -953,6 +952,8 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		long companyId, String name,
 		OrderByComparator<KaleoDefinition> orderByComparator)
 		throws NoSuchDefinitionException {
+		name = Objects.toString(name, "");
+
 		KaleoDefinition kaleoDefinition = findByPrimaryKey(kaleoDefinitionId);
 
 		Session session = null;
@@ -1000,10 +1001,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 		boolean bindName = false;
 
-		if (name == null) {
-			query.append(_FINDER_COLUMN_C_N_NAME_1);
-		}
-		else if (name.equals("")) {
+		if (name.isEmpty()) {
 			query.append(_FINDER_COLUMN_C_N_NAME_3);
 		}
 		else {
@@ -1127,6 +1125,8 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	 */
 	@Override
 	public int countByC_N(long companyId, String name) {
+		name = Objects.toString(name, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_N;
 
 		Object[] finderArgs = new Object[] { companyId, name };
@@ -1142,10 +1142,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_C_N_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_N_NAME_3);
 			}
 			else {
@@ -1821,6 +1818,8 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	@Override
 	public KaleoDefinition fetchByC_N_V(long companyId, String name,
 		int version, boolean retrieveFromCache) {
+		name = Objects.toString(name, "");
+
 		Object[] finderArgs = new Object[] { companyId, name, version };
 
 		Object result = null;
@@ -1849,10 +1848,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_C_N_V_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_N_V_NAME_3);
 			}
 			else {
@@ -1951,6 +1947,8 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	 */
 	@Override
 	public int countByC_N_V(long companyId, String name, int version) {
+		name = Objects.toString(name, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_N_V;
 
 		Object[] finderArgs = new Object[] { companyId, name, version };
@@ -1966,10 +1964,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_C_N_V_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_N_V_NAME_3);
 			}
 			else {
@@ -2131,6 +2126,8 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		boolean active, int start, int end,
 		OrderByComparator<KaleoDefinition> orderByComparator,
 		boolean retrieveFromCache) {
+		name = Objects.toString(name, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2159,7 +2156,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoDefinition kaleoDefinition : list) {
 					if ((companyId != kaleoDefinition.getCompanyId()) ||
-							!Objects.equals(name, kaleoDefinition.getName()) ||
+							!name.equals(kaleoDefinition.getName()) ||
 							(active != kaleoDefinition.isActive())) {
 						list = null;
 
@@ -2186,10 +2183,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_C_N_A_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_N_A_NAME_3);
 			}
 			else {
@@ -2402,6 +2396,8 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		long companyId, String name, boolean active,
 		OrderByComparator<KaleoDefinition> orderByComparator)
 		throws NoSuchDefinitionException {
+		name = Objects.toString(name, "");
+
 		KaleoDefinition kaleoDefinition = findByPrimaryKey(kaleoDefinitionId);
 
 		Session session = null;
@@ -2450,10 +2446,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 		boolean bindName = false;
 
-		if (name == null) {
-			query.append(_FINDER_COLUMN_C_N_A_NAME_1);
-		}
-		else if (name.equals("")) {
+		if (name.isEmpty()) {
 			query.append(_FINDER_COLUMN_C_N_A_NAME_3);
 		}
 		else {
@@ -2583,6 +2576,8 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	 */
 	@Override
 	public int countByC_N_A(long companyId, String name, boolean active) {
+		name = Objects.toString(name, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_N_A;
 
 		Object[] finderArgs = new Object[] { companyId, name, active };
@@ -2598,10 +2593,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_C_N_A_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_N_A_NAME_3);
 			}
 			else {

@@ -1222,6 +1222,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		long kaleoClassPK, int start, int end,
 		OrderByComparator<KaleoNotification> orderByComparator,
 		boolean retrieveFromCache) {
+		kaleoClassName = Objects.toString(kaleoClassName, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1249,7 +1251,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoNotification kaleoNotification : list) {
-					if (!Objects.equals(kaleoClassName,
+					if (!kaleoClassName.equals(
 								kaleoNotification.getKaleoClassName()) ||
 							(kaleoClassPK != kaleoNotification.getKaleoClassPK())) {
 						list = null;
@@ -1275,10 +1277,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 			boolean bindKaleoClassName = false;
 
-			if (kaleoClassName == null) {
-				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_1);
-			}
-			else if (kaleoClassName.equals("")) {
+			if (kaleoClassName.isEmpty()) {
 				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3);
 			}
 			else {
@@ -1482,6 +1481,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		long kaleoNotificationId, String kaleoClassName, long kaleoClassPK,
 		OrderByComparator<KaleoNotification> orderByComparator)
 		throws NoSuchNotificationException {
+		kaleoClassName = Objects.toString(kaleoClassName, "");
+
 		KaleoNotification kaleoNotification = findByPrimaryKey(kaleoNotificationId);
 
 		Session session = null;
@@ -1528,10 +1529,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 		boolean bindKaleoClassName = false;
 
-		if (kaleoClassName == null) {
-			query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_1);
-		}
-		else if (kaleoClassName.equals("")) {
+		if (kaleoClassName.isEmpty()) {
 			query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3);
 		}
 		else {
@@ -1658,6 +1656,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	 */
 	@Override
 	public int countByKCN_KCPK(String kaleoClassName, long kaleoClassPK) {
+		kaleoClassName = Objects.toString(kaleoClassName, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_KCN_KCPK;
 
 		Object[] finderArgs = new Object[] { kaleoClassName, kaleoClassPK };
@@ -1671,10 +1671,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 			boolean bindKaleoClassName = false;
 
-			if (kaleoClassName == null) {
-				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_1);
-			}
-			else if (kaleoClassName.equals("")) {
+			if (kaleoClassName.isEmpty()) {
 				query.append(_FINDER_COLUMN_KCN_KCPK_KALEOCLASSNAME_3);
 			}
 			else {
@@ -1835,6 +1832,9 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		long kaleoClassPK, String executionType, int start, int end,
 		OrderByComparator<KaleoNotification> orderByComparator,
 		boolean retrieveFromCache) {
+		kaleoClassName = Objects.toString(kaleoClassName, "");
+		executionType = Objects.toString(executionType, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1864,10 +1864,10 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoNotification kaleoNotification : list) {
-					if (!Objects.equals(kaleoClassName,
+					if (!kaleoClassName.equals(
 								kaleoNotification.getKaleoClassName()) ||
 							(kaleoClassPK != kaleoNotification.getKaleoClassPK()) ||
-							!Objects.equals(executionType,
+							!executionType.equals(
 								kaleoNotification.getExecutionType())) {
 						list = null;
 
@@ -1892,10 +1892,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 			boolean bindKaleoClassName = false;
 
-			if (kaleoClassName == null) {
-				query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_1);
-			}
-			else if (kaleoClassName.equals("")) {
+			if (kaleoClassName.isEmpty()) {
 				query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_3);
 			}
 			else {
@@ -1908,10 +1905,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 			boolean bindExecutionType = false;
 
-			if (executionType == null) {
-				query.append(_FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_1);
-			}
-			else if (executionType.equals("")) {
+			if (executionType.isEmpty()) {
 				query.append(_FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_3);
 			}
 			else {
@@ -2130,6 +2124,9 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		String executionType,
 		OrderByComparator<KaleoNotification> orderByComparator)
 		throws NoSuchNotificationException {
+		kaleoClassName = Objects.toString(kaleoClassName, "");
+		executionType = Objects.toString(executionType, "");
+
 		KaleoNotification kaleoNotification = findByPrimaryKey(kaleoNotificationId);
 
 		Session session = null;
@@ -2178,10 +2175,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 		boolean bindKaleoClassName = false;
 
-		if (kaleoClassName == null) {
-			query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_1);
-		}
-		else if (kaleoClassName.equals("")) {
+		if (kaleoClassName.isEmpty()) {
 			query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_3);
 		}
 		else {
@@ -2194,10 +2188,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 		boolean bindExecutionType = false;
 
-		if (executionType == null) {
-			query.append(_FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_1);
-		}
-		else if (executionType.equals("")) {
+		if (executionType.isEmpty()) {
 			query.append(_FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_3);
 		}
 		else {
@@ -2330,6 +2321,9 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	@Override
 	public int countByKCN_KCPK_ET(String kaleoClassName, long kaleoClassPK,
 		String executionType) {
+		kaleoClassName = Objects.toString(kaleoClassName, "");
+		executionType = Objects.toString(executionType, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_KCN_KCPK_ET;
 
 		Object[] finderArgs = new Object[] {
@@ -2345,10 +2339,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 			boolean bindKaleoClassName = false;
 
-			if (kaleoClassName == null) {
-				query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_1);
-			}
-			else if (kaleoClassName.equals("")) {
+			if (kaleoClassName.isEmpty()) {
 				query.append(_FINDER_COLUMN_KCN_KCPK_ET_KALEOCLASSNAME_3);
 			}
 			else {
@@ -2361,10 +2352,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 			boolean bindExecutionType = false;
 
-			if (executionType == null) {
-				query.append(_FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_1);
-			}
-			else if (executionType.equals("")) {
+			if (executionType.isEmpty()) {
 				query.append(_FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_3);
 			}
 			else {

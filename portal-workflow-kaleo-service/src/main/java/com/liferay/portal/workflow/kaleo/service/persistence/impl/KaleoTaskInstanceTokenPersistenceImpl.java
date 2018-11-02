@@ -1987,6 +1987,8 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		long classPK, int start, int end,
 		OrderByComparator<KaleoTaskInstanceToken> orderByComparator,
 		boolean retrieveFromCache) {
+		className = Objects.toString(className, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2014,8 +2016,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoTaskInstanceToken kaleoTaskInstanceToken : list) {
-					if (!Objects.equals(className,
-								kaleoTaskInstanceToken.getClassName()) ||
+					if (!className.equals(kaleoTaskInstanceToken.getClassName()) ||
 							(classPK != kaleoTaskInstanceToken.getClassPK())) {
 						list = null;
 
@@ -2040,10 +2041,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 
 			boolean bindClassName = false;
 
-			if (className == null) {
-				query.append(_FINDER_COLUMN_CN_CPK_CLASSNAME_1);
-			}
-			else if (className.equals("")) {
+			if (className.isEmpty()) {
 				query.append(_FINDER_COLUMN_CN_CPK_CLASSNAME_3);
 			}
 			else {
@@ -2247,6 +2245,8 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		long kaleoTaskInstanceTokenId, String className, long classPK,
 		OrderByComparator<KaleoTaskInstanceToken> orderByComparator)
 		throws NoSuchTaskInstanceTokenException {
+		className = Objects.toString(className, "");
+
 		KaleoTaskInstanceToken kaleoTaskInstanceToken = findByPrimaryKey(kaleoTaskInstanceTokenId);
 
 		Session session = null;
@@ -2294,10 +2294,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 
 		boolean bindClassName = false;
 
-		if (className == null) {
-			query.append(_FINDER_COLUMN_CN_CPK_CLASSNAME_1);
-		}
-		else if (className.equals("")) {
+		if (className.isEmpty()) {
 			query.append(_FINDER_COLUMN_CN_CPK_CLASSNAME_3);
 		}
 		else {
@@ -2423,6 +2420,8 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	 */
 	@Override
 	public int countByCN_CPK(String className, long classPK) {
+		className = Objects.toString(className, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_CN_CPK;
 
 		Object[] finderArgs = new Object[] { className, classPK };
@@ -2436,10 +2435,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 
 			boolean bindClassName = false;
 
-			if (className == null) {
-				query.append(_FINDER_COLUMN_CN_CPK_CLASSNAME_1);
-			}
-			else if (className.equals("")) {
+			if (className.isEmpty()) {
 				query.append(_FINDER_COLUMN_CN_CPK_CLASSNAME_3);
 			}
 			else {

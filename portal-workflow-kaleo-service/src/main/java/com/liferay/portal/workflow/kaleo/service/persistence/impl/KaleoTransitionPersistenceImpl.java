@@ -1703,6 +1703,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	@Override
 	public KaleoTransition fetchByKNI_N(long kaleoNodeId, String name,
 		boolean retrieveFromCache) {
+		name = Objects.toString(name, "");
+
 		Object[] finderArgs = new Object[] { kaleoNodeId, name };
 
 		Object result = null;
@@ -1730,10 +1732,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_KNI_N_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_KNI_N_NAME_3);
 			}
 			else {
@@ -1826,6 +1825,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	@Override
 	public int countByKNI_N(long kaleoNodeId, String name) {
+		name = Objects.toString(name, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_KNI_N;
 
 		Object[] finderArgs = new Object[] { kaleoNodeId, name };
@@ -1841,10 +1842,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_KNI_N_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_KNI_N_NAME_3);
 			}
 			else {
