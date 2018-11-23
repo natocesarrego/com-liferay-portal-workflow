@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 
 import java.io.Serializable;
+
 import java.util.Date;
 import java.util.List;
 

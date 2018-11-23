@@ -50,14 +50,11 @@ import com.liferay.portal.kernel.service.UserGroupLocalService;
 import com.liferay.portal.kernel.service.UserGroupRoleLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.workflow.kaleo.internal.search.KaleoTaskInstanceTokenField;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance;
@@ -65,7 +62,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalService;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenQuery;
 
-import java.text.Format;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -97,8 +93,8 @@ public class KaleoTaskInstanceTokenIndexer
 
 	public KaleoTaskInstanceTokenIndexer() {
 		setDefaultSelectedFieldNames(
-			Field.COMPANY_ID, Field.ENTRY_CLASS_NAME,
-			Field.ENTRY_CLASS_PK, Field.UID);
+			Field.COMPANY_ID, Field.ENTRY_CLASS_NAME, Field.ENTRY_CLASS_PK,
+			Field.UID);
 		setDefaultSelectedLocalizedFieldNames(
 			KaleoTaskInstanceTokenField.ASSET_DESCRIPTION,
 			KaleoTaskInstanceTokenField.ASSET_TITLE);
@@ -108,11 +104,13 @@ public class KaleoTaskInstanceTokenIndexer
 	}
 
 	@Override
-	public String getClassName() { return CLASS_NAME; }
+	public String getClassName() {
+		return CLASS_NAME;
+	}
 
 	@Override
 	public void postProcessContextBooleanFilter(
-		BooleanFilter contextBooleanFilter, SearchContext searchContext)
+			BooleanFilter contextBooleanFilter, SearchContext searchContext)
 		throws Exception {
 
 		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery =
@@ -123,32 +121,31 @@ public class KaleoTaskInstanceTokenIndexer
 			return;
 		}
 
-		appendAssigneeClassIdsNameTerm(contextBooleanFilter,
-			kaleoTaskInstanceTokenQuery);
-		appendAssigneeClassPKsTerm(contextBooleanFilter,
-			kaleoTaskInstanceTokenQuery);
+		appendAssigneeClassIdsNameTerm(
+			contextBooleanFilter, kaleoTaskInstanceTokenQuery);
+		appendAssigneeClassPKsTerm(
+			contextBooleanFilter, kaleoTaskInstanceTokenQuery);
 		appendCompletedTerm(contextBooleanFilter, kaleoTaskInstanceTokenQuery);
-		appendKaleoInstanceIdTerm(contextBooleanFilter,
-			kaleoTaskInstanceTokenQuery);
-		appendRoleIdsTerm(contextBooleanFilter,
-			kaleoTaskInstanceTokenQuery);
-		appendSearchByUserRolesTerm(contextBooleanFilter,
-			kaleoTaskInstanceTokenQuery);
+		appendKaleoInstanceIdTerm(
+			contextBooleanFilter, kaleoTaskInstanceTokenQuery);
+		appendRoleIdsTerm(contextBooleanFilter, kaleoTaskInstanceTokenQuery);
+		appendSearchByUserRolesTerm(
+			contextBooleanFilter, kaleoTaskInstanceTokenQuery);
 
 		if (appendSearchCriteria(kaleoTaskInstanceTokenQuery)) {
 			appendAssetPrimaryKeyTerm(
 				contextBooleanFilter, kaleoTaskInstanceTokenQuery);
-			appendAssetTypeTerm(contextBooleanFilter,
-				kaleoTaskInstanceTokenQuery);
-			appendDueDateRangeTerm(contextBooleanFilter,
-				kaleoTaskInstanceTokenQuery);
+			appendAssetTypeTerm(
+				contextBooleanFilter, kaleoTaskInstanceTokenQuery);
+			appendDueDateRangeTerm(
+				contextBooleanFilter, kaleoTaskInstanceTokenQuery);
 		}
 	}
 
 	@Override
 	public void postProcessSearchQuery(
-		BooleanQuery searchQuery, BooleanFilter fullQueryBooleanFilter,
-		SearchContext searchContext)
+			BooleanQuery searchQuery, BooleanFilter fullQueryBooleanFilter,
+			SearchContext searchContext)
 		throws Exception {
 
 		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery =
@@ -184,8 +181,8 @@ public class KaleoTaskInstanceTokenIndexer
 	}
 
 	protected void appendAssetTitleTerm(
-		BooleanQuery booleanQuery, String assetTitle,
-		SearchContext searchContext)
+			BooleanQuery booleanQuery, String assetTitle,
+			SearchContext searchContext)
 		throws Exception {
 
 		if (Validator.isNull(assetTitle)) {
@@ -234,7 +231,8 @@ public class KaleoTaskInstanceTokenIndexer
 			KaleoTaskInstanceTokenField.ASSIGNEE_CLASS_NAME_IDS,
 			String.valueOf(portal.getClassNameId(assigneeClassName)));
 
-		booleanFilter.add(assigneeClassNameIdsTermFilter, BooleanClauseOccur.MUST);
+		booleanFilter.add(
+			assigneeClassNameIdsTermFilter, BooleanClauseOccur.MUST);
 	}
 
 	protected void appendAssigneeClassPKsTerm(
@@ -251,8 +249,8 @@ public class KaleoTaskInstanceTokenIndexer
 			KaleoTaskInstanceTokenField.ASSIGNEE_CLASS_PKS,
 			String.valueOf(assigneeClassPK));
 
-		booleanFilter.add(assigneeClassNameIdsTermFilter,
-			BooleanClauseOccur.MUST);
+		booleanFilter.add(
+			assigneeClassNameIdsTermFilter, BooleanClauseOccur.MUST);
 	}
 
 	protected void appendCompletedTerm(
@@ -279,12 +277,6 @@ public class KaleoTaskInstanceTokenIndexer
 		if ((dueDateGT == null) && (dueDateLT == null)) {
 			return;
 		}
-
-		String formatPattern = PropsUtil.get(
-			PropsKeys.INDEX_DATE_FORMAT_PATTERN);
-
-		Format dateFormat = FastDateFormatFactoryUtil.getSimpleDateFormat(
-			formatPattern);
 
 		DateRangeTermFilter dateRangeTermFilter = new DateRangeTermFilter(
 			KaleoTaskInstanceTokenField.DUE_DATE, false, false,
@@ -417,7 +409,7 @@ public class KaleoTaskInstanceTokenIndexer
 		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery) {
 
 		if (ArrayUtil.isNotEmpty(
-			kaleoTaskInstanceTokenQuery.getAssetPrimaryKeys())) {
+				kaleoTaskInstanceTokenQuery.getAssetPrimaryKeys())) {
 
 			return true;
 		}
@@ -438,8 +430,8 @@ public class KaleoTaskInstanceTokenIndexer
 	}
 
 	protected void appendTaskNameTerm(
-		BooleanQuery booleanQuery, String taskName,
-		SearchContext searchContext)
+			BooleanQuery booleanQuery, String taskName,
+			SearchContext searchContext)
 		throws Exception {
 
 		if (Validator.isNull(taskName)) {
@@ -498,6 +490,7 @@ public class KaleoTaskInstanceTokenIndexer
 			roleIdGroupIdsMapBooleanFilter.add(
 				roleIdGroupIdsBooleanFilter, BooleanClauseOccur.SHOULD);
 		}
+
 		return roleIdGroupIdsMapBooleanFilter;
 	}
 
@@ -512,7 +505,8 @@ public class KaleoTaskInstanceTokenIndexer
 
 	@Override
 	protected Document doGetDocument(
-		KaleoTaskInstanceToken kaleoTaskInstanceToken) throws Exception {
+			KaleoTaskInstanceToken kaleoTaskInstanceToken)
+		throws Exception {
 
 		Document document = getBaseModelDocument(
 			CLASS_NAME, kaleoTaskInstanceToken);
@@ -525,7 +519,7 @@ public class KaleoTaskInstanceTokenIndexer
 		Set<Long> assigneeGroupIds = new HashSet<>();
 
 		for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance :
-			kaleoTaskAssignmentInstances) {
+				kaleoTaskAssignmentInstances) {
 
 			assigneeClassNameIds.add(
 				portal.getClassNameId(
@@ -606,13 +600,26 @@ public class KaleoTaskInstanceTokenIndexer
 
 	@Override
 	protected Summary doGetSummary(
-		Document document, Locale locale, String snippet,
-		PortletRequest portletRequest, PortletResponse portletResponse)
+			Document document, Locale locale, String snippet,
+			PortletRequest portletRequest, PortletResponse portletResponse)
 		throws Exception {
 
 		Summary summary = createSummary(document);
+
 		summary.setMaxContentLength(200);
+
 		return summary;
+	}
+
+	@Override
+	protected void doReindex(KaleoTaskInstanceToken kaleoTaskInstanceToken)
+		throws Exception {
+
+		Document document = getDocument(kaleoTaskInstanceToken);
+
+		indexWriterHelper.updateDocument(
+			getSearchEngineId(), kaleoTaskInstanceToken.getCompanyId(),
+			document, isCommitImmediately());
 	}
 
 	@Override
@@ -627,17 +634,8 @@ public class KaleoTaskInstanceTokenIndexer
 	@Override
 	protected void doReindex(String[] ids) throws Exception {
 		long companyId = GetterUtil.getLong(ids[0]);
+
 		reindexKaleoTaskInstanceTokens(companyId);
-	}
-
-	@Override
-	protected void doReindex(KaleoTaskInstanceToken kaleoTaskInstanceToken)
-		throws Exception {
-
-		Document document = getDocument(kaleoTaskInstanceToken);
-		indexWriterHelper.updateDocument(
-			getSearchEngineId(), kaleoTaskInstanceToken.getCompanyId(),
-			document, isCommitImmediately());
 	}
 
 	protected AssetEntry getAssetEntry(
@@ -667,7 +665,7 @@ public class KaleoTaskInstanceTokenIndexer
 		String className) {
 
 		return AssetRendererFactoryRegistryUtil.
-												   getAssetRendererFactoryByClassName(className);
+			getAssetRendererFactoryByClassName(className);
 	}
 
 	protected String[] getLanguageIds(
@@ -787,13 +785,13 @@ public class KaleoTaskInstanceTokenIndexer
 
 		final IndexableActionableDynamicQuery indexableActionableDynamicQuery =
 			kaleoTaskInstanceTokenLocalService.
-												  getIndexableActionableDynamicQuery();
+				getIndexableActionableDynamicQuery();
 
 		indexableActionableDynamicQuery.setCompanyId(companyId);
 
 		indexableActionableDynamicQuery.setPerformActionMethod(
 			new ActionableDynamicQuery.
-					PerformActionMethod<KaleoTaskInstanceToken>() {
+				PerformActionMethod<KaleoTaskInstanceToken>() {
 
 				@Override
 				public void performAction(
@@ -801,6 +799,7 @@ public class KaleoTaskInstanceTokenIndexer
 
 					try {
 						Document document = getDocument(kaleoTaskInstanceToken);
+
 						indexableActionableDynamicQuery.addDocuments(document);
 					}
 					catch (PortalException pe) {
@@ -808,16 +807,16 @@ public class KaleoTaskInstanceTokenIndexer
 							_log.warn(
 								"Unable to index kaleoTaskInstanceToken " +
 									kaleoTaskInstanceToken.
-															  getKaleoTaskInstanceTokenId(),
+										getKaleoTaskInstanceTokenId(),
 								pe);
 						}
 					}
 				}
+
 			});
 		indexableActionableDynamicQuery.setSearchEngineId(getSearchEngineId());
 
 		indexableActionableDynamicQuery.performActions();
-
 	}
 
 	@Reference
@@ -856,4 +855,5 @@ public class KaleoTaskInstanceTokenIndexer
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		KaleoTaskInstanceTokenIndexer.class);
+
 }

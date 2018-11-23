@@ -423,4 +423,5 @@ public class WorkflowTaskManagerImplTest
 
 		deactivateWorkflow(BlogsEntry.class.getName(), 0, 0);
 	}
+
 }

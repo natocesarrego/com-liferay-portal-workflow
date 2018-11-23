@@ -76,10 +76,6 @@ import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil;
 import com.liferay.portal.test.log.CaptureAppender;
 import com.liferay.portal.test.log.Log4JLoggerTestUtil;
-import org.apache.log4j.Level;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -88,6 +84,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+
+import org.apache.log4j.Level;
+
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
 
 /**
  * @author Inácio Nery
@@ -378,7 +380,7 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 	}
 
 	protected User createUser(
-		String roleName, Group group, boolean addUserToRole)
+			String roleName, Group group, boolean addUserToRole)
 		throws Exception {
 
 		User user = UserTestUtil.addUser(
@@ -411,8 +413,8 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 		throws PortalException {
 
 		WorkflowDefinitionLinkLocalServiceUtil.updateWorkflowDefinitionLink(
-			adminUser.getUserId(), company.getCompanyId(),
-			group.getGroupId(), className, classPK, typePK, null);
+			adminUser.getUserId(), company.getCompanyId(), group.getGroupId(),
+			className, classPK, typePK, null);
 	}
 
 	protected String getBasePath() {
@@ -478,7 +480,6 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 			RoleConstants.SITE_CONTENT_REVIEWER);
 
 		_users.add(siteAdminUser);
-
 	}
 
 	protected User adminUser;
