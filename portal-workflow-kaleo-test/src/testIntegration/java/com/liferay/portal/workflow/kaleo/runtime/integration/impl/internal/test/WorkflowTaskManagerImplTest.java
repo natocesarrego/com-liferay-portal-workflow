@@ -384,4 +384,17 @@ public class WorkflowTaskManagerImplTest
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			JournalArticleConstants.DDM_STRUCTURE_ID_ALL);
 	}
+
+	@Test
+	public void testSearchWorkflowTaskByUserRoles() throws Exception {
+		activateSingleApproverWorkflow(BlogsEntry.class.getName(), 0, 0);
+
+		addBlogsEntry();
+
+		int total = searchCountByUserRoles(siteContentReviewerUser);
+
+		Assert.assertEquals(1, total);
+
+		deactivateWorkflow(BlogsEntry.class.getName(), 0, 0);
+	}
 }
