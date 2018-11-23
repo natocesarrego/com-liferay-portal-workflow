@@ -40,6 +40,7 @@ import com.liferay.journal.service.JournalArticleLocalServiceUtil;
 import com.liferay.journal.service.JournalFolderLocalServiceUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.RoleConstants;
@@ -55,11 +56,13 @@ import com.liferay.portal.kernel.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalServiceUtil;
+import com.liferay.portal.kernel.test.randomizerbumpers.NumericStringRandomizerBumper;
+import com.liferay.portal.kernel.test.randomizerbumpers.UniqueStringRandomizerBumper;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
+import com.liferay.portal.kernel.test.util.CompanyTestUtil;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
-import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -73,6 +76,10 @@ import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil;
 import com.liferay.portal.test.log.CaptureAppender;
 import com.liferay.portal.test.log.Log4JLoggerTestUtil;
+import org.apache.log4j.Level;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -82,12 +89,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
-import org.apache.log4j.Level;
-
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-
 /**
  * @author Inácio Nery
  */
@@ -95,10 +96,15 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 
 	@Before
 	public void setUp() throws Exception {
-		group = GroupTestUtil.addGroup();
+		company = CompanyTestUtil.addCompany();
+
+		companyAdminUser = UserTestUtil.addCompanyAdminUser(company);
+
+		group = GroupTestUtil.addGroup(
+			company.getCompanyId(), companyAdminUser.getUserId(), 0);
 
 		serviceContext = ServiceContextTestUtil.getServiceContext(
-			group.getGroupId());
+			group, companyAdminUser.getUserId());
 
 		_originalPermissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
@@ -124,9 +130,9 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 		throws PortalException {
 
 		WorkflowDefinitionLinkLocalServiceUtil.updateWorkflowDefinitionLink(
-			adminUser.getUserId(), TestPropsValues.getCompanyId(),
-			group.getGroupId(), className, classPK, typePK,
-			workflowDefinitionName, workflowDefinitionVersion);
+			adminUser.getUserId(), company.getCompanyId(), group.getGroupId(),
+			className, classPK, typePK, workflowDefinitionName,
+			workflowDefinitionVersion);
 	}
 
 	protected BlogsEntry addBlogsEntry() throws PortalException {
@@ -338,6 +344,10 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 		}
 	}
 
+	protected User createContentReviewerUser(String roleName) throws Exception {
+		return createUser(roleName, group, false);
+	}
+
 	protected DDMFormValues createDDMFormValues(DDMForm ddmForm) {
 		DDMFormValues ddmFormValues = DDMFormValuesTestUtil.createDDMFormValues(
 			ddmForm);
@@ -360,17 +370,38 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 	}
 
 	protected User createUser(String roleName) throws Exception {
-		User user = UserTestUtil.addUser(group.getGroupId());
+		return createUser(roleName, group, true);
+	}
+
+	protected User createUser(String roleName, Group group) throws Exception {
+		return createUser(roleName, group, true);
+	}
+
+	protected User createUser(
+		String roleName, Group group, boolean addUserToRole)
+		throws Exception {
+
+		User user = UserTestUtil.addUser(
+			company.getCompanyId(), companyAdminUser.getUserId(),
+			RandomTestUtil.randomString(
+				NumericStringRandomizerBumper.INSTANCE,
+				UniqueStringRandomizerBumper.INSTANCE),
+			LocaleUtil.getDefault(), RandomTestUtil.randomString(),
+			RandomTestUtil.randomString(), new long[] {group.getGroupId()},
+			ServiceContextTestUtil.getServiceContext());
+
+		_users.add(user);
 
 		Role role = RoleLocalServiceUtil.getRole(
-			TestPropsValues.getCompanyId(), roleName);
+			company.getCompanyId(), roleName);
 
-		UserLocalServiceUtil.addRoleUser(role.getRoleId(), user);
-
-		long[] userIds = {user.getUserId()};
+		if (addUserToRole) {
+			UserLocalServiceUtil.addRoleUser(role.getRoleId(), user);
+		}
 
 		UserGroupRoleLocalServiceUtil.addUserGroupRoles(
-			userIds, group.getGroupId(), role.getRoleId());
+			new long[] {user.getUserId()}, group.getGroupId(),
+			role.getRoleId());
 
 		return user;
 	}
@@ -380,7 +411,7 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 		throws PortalException {
 
 		WorkflowDefinitionLinkLocalServiceUtil.updateWorkflowDefinitionLink(
-			adminUser.getUserId(), TestPropsValues.getCompanyId(),
+			adminUser.getUserId(), company.getCompanyId(),
 			group.getGroupId(), className, classPK, typePK, null);
 	}
 
@@ -424,6 +455,11 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 			false, true);
 	}
 
+	protected int searchCountByUserRoles(User user) throws Exception {
+		return WorkflowTaskManagerUtil.searchCount(
+			user.getCompanyId(), user.getUserId(), null, null, false, true);
+	}
+
 	protected void setUpUsers() throws Exception {
 		adminUser = createUser(RoleConstants.ADMINISTRATOR);
 
@@ -437,16 +473,25 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 		siteAdminUser = createUser(RoleConstants.SITE_ADMINISTRATOR);
 
 		_users.add(siteAdminUser);
+
+		siteContentReviewerUser = createContentReviewerUser(
+			RoleConstants.SITE_CONTENT_REVIEWER);
+
+		_users.add(siteAdminUser);
+
 	}
 
 	protected User adminUser;
 
 	@DeleteAfterTestRun
-	protected Group group;
+	protected Company company;
 
+	protected User companyAdminUser;
+	protected Group group;
 	protected User portalContentReviewerUser;
 	protected ServiceContext serviceContext;
 	protected User siteAdminUser;
+	protected User siteContentReviewerUser;
 
 	private static final String _MAIL_ENGINE_CLASS_NAME =
 		"com.liferay.util.mail.MailEngine";
