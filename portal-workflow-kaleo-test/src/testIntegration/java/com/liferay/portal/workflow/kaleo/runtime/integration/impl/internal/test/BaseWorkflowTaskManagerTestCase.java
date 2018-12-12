@@ -47,6 +47,7 @@ import com.liferay.portal.kernel.model.RoleConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.kernel.model.UserNotificationEvent;
+import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
@@ -74,10 +75,10 @@ import com.liferay.portal.kernel.workflow.WorkflowInstance;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceManagerUtil;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil;
+import com.liferay.portal.security.permission.SimplePermissionChecker;
 import com.liferay.portal.test.log.CaptureAppender;
 import com.liferay.portal.test.log.Log4JLoggerTestUtil;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -108,15 +109,16 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 		serviceContext = ServiceContextTestUtil.getServiceContext(
 			group, companyAdminUser.getUserId());
 
-		_originalPermissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
+		setUpPermissionThreadLocal();
+		setUpPrincipalThreadLocal();
 		setUpUsers();
 	}
 
 	@After
 	public void tearDown() throws PortalException {
-		PermissionThreadLocal.setPermissionChecker(_originalPermissionChecker);
+		PermissionThreadLocal.setPermissionChecker(_permissionChecker);
+
+		PrincipalThreadLocal.setName(_name);
 	}
 
 	protected void activateSingleApproverWorkflow(
@@ -392,8 +394,6 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 			RandomTestUtil.randomString(), new long[] {group.getGroupId()},
 			ServiceContextTestUtil.getServiceContext());
 
-		_users.add(user);
-
 		Role role = RoleLocalServiceUtil.getRole(
 			company.getCompanyId(), roleName);
 
@@ -462,24 +462,43 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 			user.getCompanyId(), user.getUserId(), null, null, false, true);
 	}
 
+	protected void setUpPermissionThreadLocal() throws Exception {
+		_permissionChecker = PermissionThreadLocal.getPermissionChecker();
+
+		PermissionThreadLocal.setPermissionChecker(
+			new SimplePermissionChecker() {
+
+				{
+					init(companyAdminUser);
+				}
+
+				@Override
+				public boolean hasOwnerPermission(
+					long companyId, String name, String primKey, long ownerId,
+					String actionId) {
+
+					return true;
+				}
+
+			});
+	}
+
+	protected void setUpPrincipalThreadLocal() throws Exception {
+		_name = PrincipalThreadLocal.getName();
+
+		PrincipalThreadLocal.setName(companyAdminUser.getUserId());
+	}
+
 	protected void setUpUsers() throws Exception {
 		adminUser = createUser(RoleConstants.ADMINISTRATOR);
-
-		_users.add(adminUser);
 
 		portalContentReviewerUser = createUser(
 			RoleConstants.PORTAL_CONTENT_REVIEWER);
 
-		_users.add(portalContentReviewerUser);
-
 		siteAdminUser = createUser(RoleConstants.SITE_ADMINISTRATOR);
-
-		_users.add(siteAdminUser);
 
 		siteContentReviewerUser = createContentReviewerUser(
 			RoleConstants.SITE_CONTENT_REVIEWER);
-
-		_users.add(siteAdminUser);
 	}
 
 	protected User adminUser;
@@ -497,9 +516,7 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 	private static final String _MAIL_ENGINE_CLASS_NAME =
 		"com.liferay.util.mail.MailEngine";
 
-	private PermissionChecker _originalPermissionChecker;
-
-	@DeleteAfterTestRun
-	private final List<User> _users = new ArrayList<>();
+	private String _name;
+	private PermissionChecker _permissionChecker;
 
 }
