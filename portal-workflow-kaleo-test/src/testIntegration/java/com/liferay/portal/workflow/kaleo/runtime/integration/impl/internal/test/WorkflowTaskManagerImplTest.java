@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.test.rule.Sync;
 import com.liferay.portal.kernel.test.rule.SynchronousDestinationTestRule;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -371,7 +372,7 @@ public class WorkflowTaskManagerImplTest
 		JournalArticle article = addJournalArticle(
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
-		int total = searchCount(article.getTitle());
+		int total = searchCount(article.getTitle(LocaleUtil.getDefault()));
 
 		Assert.assertEquals(1, total);
 
@@ -395,7 +396,7 @@ public class WorkflowTaskManagerImplTest
 		JournalArticle article = addJournalArticle(
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
-		int total = searchCount(article.getTitle());
+		int total = searchCount(article.getTitle(LocaleUtil.getDefault()));
 
 		Assert.assertEquals(1, total);
 
