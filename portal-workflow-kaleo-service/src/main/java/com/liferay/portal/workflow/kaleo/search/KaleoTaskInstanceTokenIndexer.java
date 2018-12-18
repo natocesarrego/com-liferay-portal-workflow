@@ -99,8 +99,8 @@ public class KaleoTaskInstanceTokenIndexer
 			KaleoTaskInstanceTokenField.ASSET_DESCRIPTION,
 			KaleoTaskInstanceTokenField.ASSET_TITLE);
 
-		setPermissionAware(true);
-		setFilterSearch(true);
+		setPermissionAware(false);
+		setFilterSearch(false);
 	}
 
 	@Override
