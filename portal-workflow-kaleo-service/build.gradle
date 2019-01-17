@@ -21,5 +21,5 @@ dependencies {
 	compileOnly group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations", version: "1.3.0"
 	compileOnly group: "org.springframework", name: "spring-context", version: "4.1.9.RELEASE"
-	compileOnly project(":apps:forms-and-workflow:portal-workflow:portal-workflow-kaleo-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.workflow.kaleo.api", version: "2.3.0"
 }
